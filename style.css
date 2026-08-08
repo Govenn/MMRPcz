@@ -284,10 +284,10 @@ a:focus-visible, button:focus-visible{
 .player-count{
   display:flex;
   align-items:center;
-  font-family:var(--font-mono);
+  font-family:var(--font-display);
   font-size:13px;
-  font-weight:600;
-  letter-spacing:.04em;
+  font-weight:400;
+  letter-spacing:.02em;
   color:var(--gray-300);
   white-space:nowrap;
 }
@@ -550,7 +550,6 @@ a:focus-visible, button:focus-visible{
   transform-origin:50% 80%;
   transition:transform .55s var(--ease), color .3s var(--ease);
 }
-.feature-card:hover .feature-icon,
 .guide-cta-card:hover .feature-icon{
   background:#ffffff;
   border-color:#ffffff;
@@ -558,28 +557,20 @@ a:focus-visible, button:focus-visible{
   transform:translateY(-2px);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 12px 26px rgba(0,0,0,.35);
 }
-.feature-card:hover .feature-icon i,
 .guide-cta-card:hover .feature-icon i{
   color:#08080a;
   transform:translateY(-8px) translateX(4px) rotate(-16deg) scale(1.16);
 }
-/* Hlavičky dlaždic jsou trvale bílé — ikona proto vždy v tmavém provedení */
-.feature-card-head .feature-icon{
-  width:40px; height:40px;
-  border-radius:11px;
-  font-size:16px;
-  background:rgba(8,8,10,.06);
-  border-color:rgba(8,8,10,.1);
-  color:var(--bg);
-}
-.feature-card:hover .feature-card-head .feature-icon{
-  background:var(--bg);
-  border-color:var(--bg);
-  color:var(--white);
+
+.feature-card:hover{
+  transform:translateZ(0);
+  border-color:var(--border);
+  outline-color:rgba(255,255,255,.12);
   box-shadow:none;
 }
-.feature-card:hover .feature-card-head .feature-icon i{
-  color:var(--white);
+.feature-card:hover::before{
+  opacity:0;
+  transform:translate(-18%, -18%) scale(.3);
 }
 
 .feature-title{
