@@ -1,7 +1,7 @@
 
 /* ============================================================
-   MMRP — Městské Město Roleplay
-   Design: hluboká černá / bílá, glassmorphism, "reflektor ve tmě"
+   MMRP — Česko-slovenský FiveM server
+   Design: hluboká černá / bílá, glassmorphism
    ============================================================ */
 
 :root{
@@ -20,7 +20,7 @@
   --glow:          rgba(255,255,255,0.14);
 
   /* --- Typografie --- */
-  --font-display: 'Bebas Neue', sans-serif;
+  --font-display: 'Montserrat', 'Inter', sans-serif;
   --font-body:    'Inter', sans-serif;
   --font-mono:    'JetBrains Mono', monospace;
 
@@ -123,9 +123,10 @@ a:focus-visible, button:focus-visible{
 
 .section-title{
   font-family:var(--font-display);
-  font-size:clamp(38px, 5vw, 60px);
+  font-weight:900;
+  font-size:clamp(28px, 3.8vw, 44px);
   letter-spacing:.01em;
-  line-height:1.05;
+  line-height:1.1;
   text-transform:uppercase;
   margin-bottom:16px;
 }
@@ -157,11 +158,13 @@ a:focus-visible, button:focus-visible{
   align-items:center;
   justify-content:center;
   gap:10px;
-  padding:16px 30px;
+  padding:16px 32px;
   font-family:var(--font-body);
-  font-weight:600;
-  font-size:15px;
-  border-radius:999px;
+  font-weight:800;
+  font-size:13.5px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-radius:14px;
   transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease);
   overflow:hidden;
   white-space:nowrap;
@@ -232,23 +235,21 @@ a:focus-visible, button:focus-visible{
 
 .logo{
   font-family:var(--font-display);
-  font-size:26px;
-  letter-spacing:.06em;
+  font-weight:900;
+  font-size:19px;
+  letter-spacing:.08em;
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:12px;
   transition:opacity .3s ease;
 }
 .logo:hover{ opacity:.85; }
-.logo span{
-  color:var(--gray-500);
-  font-family:var(--font-mono);
-  font-size:11px;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  font-weight:500;
-  border-left:1px solid var(--border-strong);
-  padding-left:10px;
+
+.brand-logo-img{
+  height:34px;
+  width:auto;
+  display:block;
+  border-radius:8px;
 }
 
 .nav-links{
@@ -275,12 +276,28 @@ a:focus-visible, button:focus-visible{
 .nav-links a:hover{ color:var(--white); }
 .nav-links a:hover::after{ width:100%; }
 
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+/* Počet hráčů online — v rohu vedle menu */
+.nav-players{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:15px;
+  letter-spacing:.04em;
+  color:var(--white);
+  white-space:nowrap;
+}
+
 .nav-cta{
   display:flex;
   align-items:center;
   gap:14px;
 }
-.nav-cta .btn{ padding:11px 22px; font-size:13.5px; }
+.nav-cta .btn{ padding:11px 20px; font-size:12px; }
 
 .nav-toggle{
   display:none;
@@ -313,6 +330,7 @@ a:focus-visible, button:focus-visible{
   .nav-links a::after{ display:none; }
   .nav-cta{ display:none; }
   .nav-toggle{ display:block; }
+  .nav-right{ gap:16px; }
 }
 
 /* ============================== */
@@ -362,27 +380,20 @@ a:focus-visible, button:focus-visible{
 
 .hero-title{
   font-family:var(--font-display);
-  font-size:clamp(96px, 18vw, 220px);
-  line-height:.92;
-  letter-spacing:.05em;
+  font-weight:900;
+  font-size:clamp(56px, 11vw, 150px);
+  line-height:.95;
+  letter-spacing:.02em;
+  text-transform:uppercase;
   color:var(--white);
   text-shadow:0 12px 60px rgba(0,0,0,.65);
-}
-
-.hero-subtitle{
-  font-family:var(--font-mono);
-  font-size:14px;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  color:var(--gray-300);
-  margin-top:14px;
-  margin-bottom:26px;
+  margin-bottom:22px;
 }
 
 .hero-desc{
-  font-size:17px;
-  color:var(--gray-300);
-  max-width:540px;
+  font-size:17.5px;
+  color:var(--gray-100);
+  max-width:480px;
   margin:0 auto 42px;
 }
 
@@ -576,7 +587,8 @@ a:focus-visible, button:focus-visible{
   display:flex; align-items:center; justify-content:center;
   overflow:hidden;
   font-family:var(--font-display);
-  font-size:24px;
+  font-weight:800;
+  font-size:20px;
   letter-spacing:.05em;
   background:linear-gradient(155deg, rgba(255,255,255,.14), rgba(255,255,255,.02));
   border:1px solid var(--border-strong);
@@ -624,8 +636,9 @@ a:focus-visible, button:focus-visible{
   align-items:center;
   gap:12px;
   font-family:var(--font-display);
-  font-size:28px;
-  letter-spacing:.03em;
+  font-weight:900;
+  font-size:20px;
+  letter-spacing:.04em;
   text-transform:uppercase;
   margin-bottom:28px;
 }
@@ -703,7 +716,8 @@ a:focus-visible, button:focus-visible{
 }
 .cta-title{
   font-family:var(--font-display);
-  font-size:clamp(36px, 5vw, 56px);
+  font-weight:900;
+  font-size:clamp(26px, 3.8vw, 42px);
   text-transform:uppercase;
   margin-bottom:20px;
   position:relative;
@@ -816,7 +830,7 @@ a:focus-visible, button:focus-visible{
   .footer-top{ grid-template-columns:1fr; gap:36px; }
   .btn-row{ flex-direction:column; width:100%; }
   .btn{ width:100%; }
-  .hero-title{ font-size:clamp(80px, 26vw, 130px); }
+  .hero-title{ font-size:clamp(52px, 17vw, 90px); }
   .section-desc{ margin-bottom:44px; }
 }
 
@@ -845,9 +859,10 @@ a:focus-visible, button:focus-visible{
 
 .page-title{
   font-family:var(--font-display);
-  font-size:clamp(40px, 6vw, 68px);
+  font-weight:900;
+  font-size:clamp(32px, 4.6vw, 52px);
   text-transform:uppercase;
-  line-height:1.02;
+  line-height:1.05;
   margin-bottom:16px;
 }
 
@@ -864,9 +879,10 @@ a:focus-visible, button:focus-visible{
   align-items:center;
   gap:14px;
   font-family:var(--font-display);
-  font-size:26px;
+  font-weight:900;
+  font-size:19px;
   text-transform:uppercase;
-  letter-spacing:.02em;
+  letter-spacing:.03em;
   margin-bottom:22px;
 }
 .rule-group-title i{
@@ -953,7 +969,9 @@ a:focus-visible, button:focus-visible{
 }
 .faq-item.open .faq-answer{ max-height:420px; }
 .faq-answer-inner{
-  padding:0 24px 22px;
+  margin:0 24px;
+  padding:16px 0 22px;
+  border-top:1px solid rgba(255,255,255,.055);
   color:var(--gray-500);
   font-size:14.5px;
   line-height:1.75;

@@ -27,14 +27,14 @@
 
   const FIVEM_CONFIG = {
     cfxCode: "TVUJ_JOIN_KOD",  // <-- ZDE ZMEŇ na svůj join kód z cfx.re
-    maxPlayersFallback: 200,    // záložní maximum hráčů, pokud se live data nenačtou
+    maxPlayersFallback: 64,     // záložní maximum hráčů, pokud se live data nenačtou
     refreshInterval: 60000      // jak často (ms) obnovovat data — 60000 = 1 minuta
   };
 
   async function fetchFiveMStatus(){
     const dots = document.querySelectorAll('.js-status-dot');
     const texts = document.querySelectorAll('.js-status-text');
-    const playerCounter = document.getElementById('playerCounter');
+    const playerCounts = document.querySelectorAll('.js-player-count');
 
     try{
       const res = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${FIVEM_CONFIG.cfxCode}`);
@@ -45,24 +45,14 @@
       const online = data.clients ?? 0;
       const max = data.sv_maxclients || FIVEM_CONFIG.maxPlayersFallback;
 
-      if (playerCounter){
-        playerCounter.dataset.target = online;
-        playerCounter.dataset.suffix = ' / ' + max;
-        // pokud karta se statistikou už byla na obrazovce spočítaná, přepočítej ji hned znovu
-        if (playerCounter.dataset.counted === 'true') animateCounter(playerCounter);
-      }
-
+      playerCounts.forEach(el => el.textContent = `${online}/${max}`);
       dots.forEach(d => d.classList.remove('is-offline'));
       texts.forEach(t => t.textContent = 'Server online');
 
     }catch(err){
+      playerCounts.forEach(el => el.textContent = `0/${FIVEM_CONFIG.maxPlayersFallback}`);
       dots.forEach(d => d.classList.add('is-offline'));
       texts.forEach(t => t.textContent = 'Server offline');
-      if (playerCounter){
-        playerCounter.dataset.target = 0;
-        playerCounter.dataset.suffix = ' / ' + FIVEM_CONFIG.maxPlayersFallback;
-        if (playerCounter.dataset.counted === 'true') animateCounter(playerCounter);
-      }
     }
   }
 
