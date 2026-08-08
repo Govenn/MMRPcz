@@ -425,33 +425,56 @@ a:focus-visible, button:focus-visible{
 /* ============================== */
 .glass-card{
   position:relative;
+  isolation:isolate;
   background:linear-gradient(160deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
   border:1px solid var(--border);
   border-radius:var(--radius-md);
   backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
   overflow:hidden;
+  transform:translateZ(0);
   transition:transform .5s var(--ease), border-color .5s var(--ease), background .5s var(--ease), box-shadow .5s var(--ease);
 }
+/* Bílý/barevný glow jen uvnitř dlaždice (clip přes overflow) */
 .glass-card::before{
   content:'';
   position:absolute;
   inset:0;
-  background:radial-gradient(400px circle at var(--mx,50%) var(--my,50%), rgba(var(--glow-color, 255, 255, 255), 0.12), transparent 50%);
+  border-radius:inherit;
+  background:radial-gradient(
+    240px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--glow-color, 255, 255, 255), 0.2),
+    rgba(var(--glow-color, 255, 255, 255), 0.07) 42%,
+    transparent 70%
+  );
   opacity:0;
   transition:opacity .4s ease;
   pointer-events:none;
   z-index:0;
+}
+.glass-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  box-shadow:inset 0 0 48px rgba(var(--glow-color, 255, 255, 255), 0.07);
+  opacity:0;
+  transition:opacity .4s ease;
+  pointer-events:none;
+  z-index:2;
 }
 .glass-card > * {
   position:relative;
   z-index:1;
 }
 .glass-card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-6px) translateZ(0);
   border-color:var(--border-strong);
   box-shadow:0 24px 48px rgba(0,0,0,.5);
+  background:linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
 }
-.glass-card:hover::before{ opacity:1; }
+.glass-card:hover::before,
+.glass-card:hover::after{ opacity:1; }
 
 /* ============================== */
 /* STATISTIKY SMAZÁNY */
@@ -497,14 +520,41 @@ a:focus-visible, button:focus-visible{
   display:flex; align-items:center; justify-content:center;
   font-size:19px;
   margin-bottom:26px;
-  transition:background .4s ease, border-color .4s ease, transform .4s ease;
-}
-.feature-card:hover .feature-icon{
-  background:rgba(255,255,255,.12);
-  border-color:var(--border-strong);
   color:var(--white);
-  transform:translateY(-4px) scale(1.04);
-  box-shadow:0 8px 24px rgba(0,0,0,.2);
+  overflow:visible;
+  transition:background .35s var(--ease), border-color .35s var(--ease), color .3s var(--ease), box-shadow .35s var(--ease), transform .45s var(--ease);
+}
+.feature-icon i{
+  display:inline-block;
+  will-change:transform;
+  transform-origin:50% 80%;
+  transition:transform .55s var(--ease), color .3s var(--ease);
+}
+.feature-card:hover .feature-icon,
+.guide-cta-card:hover .feature-icon{
+  background:#ffffff;
+  border-color:#ffffff;
+  color:#08080a;
+  transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 12px 26px rgba(0,0,0,.35);
+}
+.feature-card:hover .feature-icon i,
+.guide-cta-card:hover .feature-icon i{
+  color:#08080a;
+  transform:translateY(-8px) translateX(4px) rotate(-16deg) scale(1.16);
+}
+/* Auto — vyjede dopředu a nakloní se do zatáčky */
+.features-grid > .feature-card:nth-child(1):hover .feature-icon i{
+  transform:translateY(-6px) translateX(10px) rotate(-22deg) scale(1.18);
+}
+/* Ekonomika — vystřelí nahoru s náklonem */
+.features-grid > .feature-card:nth-child(2):hover .feature-icon i{
+  transform:translateY(-11px) translateX(1px) rotate(14deg) scale(1.16);
+}
+/* Frakce / A-Team — pop-out s náklonem */
+.features-grid > .feature-card:nth-child(3):hover .feature-icon i,
+.features-grid > .feature-card:nth-child(4):hover .feature-icon i{
+  transform:translateY(-8px) translateX(-3px) rotate(-12deg) scale(1.14);
 }
 
 .feature-title{
@@ -534,6 +584,7 @@ a:focus-visible, button:focus-visible{
 }
 
 .avatar{
+  position:relative;
   width:78px; height:78px;
   border-radius:50%;
   margin:0 auto 22px;
@@ -546,15 +597,29 @@ a:focus-visible, button:focus-visible{
   border:1px solid var(--border-strong);
   transition:box-shadow .4s ease, transform .4s ease;
 }
+.avatar::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:radial-gradient(circle at 50% 35%, rgba(255,255,255,.22), transparent 62%);
+  opacity:0;
+  transition:opacity .4s ease;
+  pointer-events:none;
+  z-index:1;
+}
 .avatar img{
   width:100%;
   height:100%;
   object-fit:cover;
+  position:relative;
+  z-index:0;
 }
 .team-card:hover .avatar{
-  box-shadow:0 0 0 6px rgba(255,255,255,.05), 0 0 40px rgba(255,255,255,.15);
+  box-shadow:inset 0 0 28px rgba(255,255,255,.18), inset 0 0 0 1px rgba(255,255,255,.12);
   transform:scale(1.05);
 }
+.team-card:hover .avatar::after{ opacity:1; }
 
 .team-status{
   text-align:center;
@@ -613,18 +678,27 @@ a:focus-visible, button:focus-visible{
 }
 
 .team-card[data-category="management"] .avatar{ border-color:rgba(var(--glow-management), .55); }
+.team-card[data-category="management"] .avatar::after{
+  background:radial-gradient(circle at 50% 35%, rgba(var(--glow-management), .55), transparent 62%);
+}
 .team-card[data-category="management"]:hover .avatar{
-  box-shadow:0 0 0 6px rgba(var(--glow-management), .12), 0 0 44px rgba(var(--glow-management), .55);
+  box-shadow:inset 0 0 32px rgba(var(--glow-management), .45), inset 0 0 0 1px rgba(var(--glow-management), .35);
 }
 
 .team-card[data-category="high-staff"] .avatar{ border-color:rgba(var(--glow-highstaff), .55); }
+.team-card[data-category="high-staff"] .avatar::after{
+  background:radial-gradient(circle at 50% 35%, rgba(var(--glow-highstaff), .55), transparent 62%);
+}
 .team-card[data-category="high-staff"]:hover .avatar{
-  box-shadow:0 0 0 6px rgba(var(--glow-highstaff), .12), 0 0 44px rgba(var(--glow-highstaff), .55);
+  box-shadow:inset 0 0 32px rgba(var(--glow-highstaff), .45), inset 0 0 0 1px rgba(var(--glow-highstaff), .35);
 }
 
 .team-card[data-category="staff"] .avatar{ border-color:rgba(var(--glow-staff), .55); }
+.team-card[data-category="staff"] .avatar::after{
+  background:radial-gradient(circle at 50% 35%, rgba(var(--glow-staff), .55), transparent 62%);
+}
 .team-card[data-category="staff"]:hover .avatar{
-  box-shadow:0 0 0 6px rgba(var(--glow-staff), .12), 0 0 44px rgba(var(--glow-staff), .55);
+  box-shadow:inset 0 0 32px rgba(var(--glow-staff), .45), inset 0 0 0 1px rgba(var(--glow-staff), .35);
 }
 
 .team-name{
