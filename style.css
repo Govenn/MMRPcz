@@ -538,6 +538,7 @@ a:focus-visible, button:focus-visible{
   padding:0;
   display:flex;
   flex-direction:column;
+  outline-color:rgba(255,255,255,.1);
 }
 
 .feature-card-head{
@@ -585,7 +586,7 @@ a:focus-visible, button:focus-visible{
 .feature-card:hover{
   transform:translateZ(0);
   border-color:var(--border);
-  outline-color:rgba(255,255,255,.12);
+  outline-color:rgba(255,255,255,.24);
   box-shadow:none;
 }
 .feature-card:hover::before{
@@ -678,7 +679,7 @@ a:focus-visible, button:focus-visible{
 .team-group-title{
   width:100vw;
   margin:0 0 28px calc(50% - 50vw);
-  padding:22px 0;
+  padding:16px 0;
   font-family:var(--font-display);
   font-weight:800;
   font-size:clamp(26px, 3vw, 32px);
@@ -686,22 +687,20 @@ a:focus-visible, button:focus-visible{
   letter-spacing:-.005em;
   text-transform:uppercase;
   text-align:center;
-  color:var(--white);
-}
-.team-group[data-category="management"] .team-group-title{
-  background:rgb(var(--glow-management));
-}
-.team-group[data-category="high-staff"] .team-group-title{
-  background:rgb(var(--glow-highstaff));
-}
-.team-group[data-category="staff"] .team-group-title{
-  background:rgb(var(--glow-staff));
+  color:var(--bg);
+  background:var(--white);
 }
 
-/* Kategorie: jemný barevný akcent jen na rámečku avataru */
-.team-card[data-category="management"] .avatar{ border-color:rgba(var(--glow-management), .45); }
-.team-card[data-category="high-staff"] .avatar{ border-color:rgba(var(--glow-highstaff), .45); }
-.team-card[data-category="staff"] .avatar{ border-color:rgba(var(--glow-staff), .45); }
+/* Kategorie: barevný akcent na rámečku avataru */
+.team-card[data-category="management"] .avatar{
+  border:2px solid rgb(var(--glow-management));
+}
+.team-card[data-category="high-staff"] .avatar{
+  border:2px solid rgb(var(--glow-highstaff));
+}
+.team-card[data-category="staff"] .avatar{
+  border:2px solid rgb(var(--glow-staff));
+}
 
 .team-card:hover{
   transform:translateZ(0);
