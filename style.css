@@ -516,10 +516,13 @@ a:focus-visible, button:focus-visible{
 .feature-card-head{
   display:flex;
   align-items:center;
-  gap:12px;
-  min-height:108px;
-  padding:22px 20px;
+  justify-content:center;
+  min-height:0;
+  margin:10px 10px 0;
+  padding:12px 10px;
   background:var(--white);
+  border-radius:10px;
+  text-align:center;
 }
 
 .feature-icon{
@@ -571,29 +574,18 @@ a:focus-visible, button:focus-visible{
 .feature-card:hover .feature-card-head .feature-icon i{
   color:var(--white);
 }
-/* Auto — vyjede dopředu a nakloní se do zatáčky */
-.features-grid > .feature-card:nth-child(1):hover .feature-icon i{
-  transform:translateY(-6px) translateX(10px) rotate(-22deg) scale(1.18);
-}
-/* Ekonomika — vystřelí nahoru s náklonem */
-.features-grid > .feature-card:nth-child(2):hover .feature-icon i{
-  transform:translateY(-11px) translateX(1px) rotate(14deg) scale(1.16);
-}
-/* Frakce / A-Team — pop-out s náklonem */
-.features-grid > .feature-card:nth-child(3):hover .feature-icon i,
-.features-grid > .feature-card:nth-child(4):hover .feature-icon i{
-  transform:translateY(-8px) translateX(-3px) rotate(-12deg) scale(1.14);
-}
 
 .feature-title{
   font-family:var(--font-display);
-  font-weight:800;
-  font-size:16.5px;
-  line-height:1.2;
-  letter-spacing:-.005em;
+  font-weight:900;
+  font-size:clamp(17px, 1.85vw, 20px);
+  line-height:1.1;
+  letter-spacing:-.01em;
   text-transform:uppercase;
   color:var(--bg);
   margin:0;
+  width:100%;
+  text-align:center;
 }
 
 .feature-desc{
