@@ -108,7 +108,7 @@ a:focus-visible, button:focus-visible{
   display:inline-flex;
   align-items:center;
   gap:10px;
-  font-family:var(--font-mono);
+  font-family:var(--font-display);
   font-size:12.5px;
   letter-spacing:.18em;
   text-transform:uppercase;
@@ -436,7 +436,7 @@ a:focus-visible, button:focus-visible{
   align-items:center;
   gap:8px;
   color:var(--gray-500);
-  font-family:var(--font-mono);
+  font-family:var(--font-display);
   font-size:11px;
   letter-spacing:.14em;
   text-transform:uppercase;
@@ -655,7 +655,7 @@ a:focus-visible, button:focus-visible{
 .team-status{
   text-align:center;
   color:var(--gray-500);
-  font-family:var(--font-mono);
+  font-family:var(--font-display);
   font-size:13.5px;
   padding:40px 0;
 }
@@ -663,7 +663,7 @@ a:focus-visible, button:focus-visible{
 .team-updated{
   text-align:center;
   color:var(--gray-500);
-  font-family:var(--font-mono);
+  font-family:var(--font-display);
   font-size:12px;
   letter-spacing:.05em;
   margin-top:44px;
@@ -680,44 +680,36 @@ a:focus-visible, button:focus-visible{
 .team-group:last-child{ margin-bottom:0; }
 
 .team-group-title{
-  display:flex;
-  align-items:center;
-  gap:12px;
+  width:100vw;
+  margin:0 0 28px calc(50% - 50vw);
+  padding:0;
   font-family:var(--font-display);
   font-weight:800;
   font-size:24px;
+  line-height:1.2;
   letter-spacing:-.005em;
   text-transform:uppercase;
-  margin-bottom:28px;
+  color:var(--bg);
 }
-.team-group-title::before{
-  content:'';
-  width:10px; height:10px;
-  border-radius:50%;
-  flex-shrink:0;
-}
-.team-group[data-category="management"] .team-group-title::before{
+.team-group[data-category="management"] .team-group-title{
   background:rgb(var(--glow-management));
 }
-.team-group[data-category="high-staff"] .team-group-title::before{
+.team-group[data-category="high-staff"] .team-group-title{
   background:rgb(var(--glow-highstaff));
 }
-.team-group[data-category="staff"] .team-group-title::before{
+.team-group[data-category="staff"] .team-group-title{
   background:rgb(var(--glow-staff));
 }
 
 /* Kategorie: jemný barevný akcent jen na rámečku avataru a badge role */
 .team-card[data-category="management"] .avatar{ border-color:rgba(var(--glow-management), .45); }
 .team-card[data-category="management"]:hover .avatar{ border-color:rgba(var(--glow-management), .8); }
-.team-card[data-category="management"] .team-role{ border-color:rgba(var(--glow-management), .3); }
 
 .team-card[data-category="high-staff"] .avatar{ border-color:rgba(var(--glow-highstaff), .45); }
 .team-card[data-category="high-staff"]:hover .avatar{ border-color:rgba(var(--glow-highstaff), .8); }
-.team-card[data-category="high-staff"] .team-role{ border-color:rgba(var(--glow-highstaff), .3); }
 
 .team-card[data-category="staff"] .avatar{ border-color:rgba(var(--glow-staff), .45); }
 .team-card[data-category="staff"]:hover .avatar{ border-color:rgba(var(--glow-staff), .8); }
-.team-card[data-category="staff"] .team-role{ border-color:rgba(var(--glow-staff), .3); }
 
 .team-name{
   font-size:16.5px;
@@ -726,14 +718,16 @@ a:focus-visible, button:focus-visible{
 }
 
 .team-role{
-  font-family:var(--font-mono);
+  font-family:var(--font-display);
+  font-weight:700;
   font-size:11.5px;
-  letter-spacing:.1em;
+  letter-spacing:.06em;
   text-transform:uppercase;
-  color:var(--gray-500);
+  color:var(--bg);
+  background:var(--white);
   display:inline-block;
   padding:6px 14px;
-  border:1px solid var(--border);
+  border:none;
   border-radius:999px;
 }
 
@@ -824,7 +818,8 @@ a:focus-visible, button:focus-visible{
 }
 
 .footer-col-title{
-  font-family:var(--font-mono);
+  font-family:var(--font-display);
+  font-weight:700;
   font-size:12px;
   letter-spacing:.12em;
   text-transform:uppercase;
@@ -856,7 +851,7 @@ a:focus-visible, button:focus-visible{
 .footer-bottom .footer-status{
   display:flex;
   align-items:center;
-  font-family:var(--font-mono);
+  font-family:var(--font-display);
   font-size:12px;
 }
 
@@ -896,7 +891,7 @@ a:focus-visible, button:focus-visible{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  font-family:var(--font-mono);
+  font-family:var(--font-display);
   font-size:12.5px;
   letter-spacing:.08em;
   text-transform:uppercase;
