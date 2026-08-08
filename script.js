@@ -80,12 +80,16 @@
   const navLinks = document.getElementById('navLinks');
   navToggle.addEventListener('click', () => {
     const isOpen = navLinks.classList.toggle('open');
-    navToggle.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    navToggle.classList.toggle('is-open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+    navToggle.setAttribute('aria-label', isOpen ? 'Zavřít menu' : 'Otevřít menu');
   });
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('open');
-      navToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      navToggle.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Otevřít menu');
     });
   });
 
