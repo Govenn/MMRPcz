@@ -442,10 +442,10 @@ a:focus-visible, button:focus-visible{
   inset:0;
   border-radius:inherit;
   background:radial-gradient(
-    280px circle at var(--mx,50%) var(--my,50%),
-    rgba(var(--glow-color, 255, 255, 255), 0.16),
-    rgba(var(--glow-color, 255, 255, 255), 0.05) 40%,
-    transparent 68%
+    240px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--glow-color, 255, 255, 255), 0.2),
+    rgba(var(--glow-color, 255, 255, 255), 0.07) 42%,
+    transparent 70%
   );
   opacity:0;
   transition:opacity .4s ease;
@@ -522,35 +522,39 @@ a:focus-visible, button:focus-visible{
   margin-bottom:26px;
   color:var(--white);
   overflow:visible;
-  transition:background .4s var(--ease), border-color .4s var(--ease), color .35s var(--ease), box-shadow .4s var(--ease);
+  transition:background .35s var(--ease), border-color .35s var(--ease), color .3s var(--ease), box-shadow .35s var(--ease), transform .45s var(--ease);
 }
 .feature-icon i{
   display:inline-block;
-  transform-origin:50% 70%;
-  transition:transform .5s var(--ease), color .35s var(--ease);
+  will-change:transform;
+  transform-origin:50% 80%;
+  transition:transform .55s var(--ease), color .3s var(--ease);
 }
-.feature-card:hover .feature-icon{
-  background:rgba(255,255,255,.94);
-  border-color:rgba(255,255,255,.98);
+.feature-card:hover .feature-icon,
+.guide-cta-card:hover .feature-icon{
+  background:#ffffff;
+  border-color:#ffffff;
   color:#08080a;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.65), 0 10px 28px rgba(0,0,0,.28);
+  transform:translateY(-2px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8), 0 12px 26px rgba(0,0,0,.35);
 }
-.feature-card:hover .feature-icon i{
+.feature-card:hover .feature-icon i,
+.guide-cta-card:hover .feature-icon i{
   color:#08080a;
-  transform:translateY(-7px) translateX(3px) rotate(-14deg) scale(1.12);
+  transform:translateY(-8px) translateX(4px) rotate(-16deg) scale(1.16);
 }
-/* Auto — vyjede dopředu a nakloní se jako do zatáčky */
-.feature-card:nth-child(1):hover .feature-icon i{
-  transform:translateY(-5px) translateX(8px) rotate(-18deg) scale(1.14);
+/* Auto — vyjede dopředu a nakloní se do zatáčky */
+.features-grid > .feature-card:nth-child(1):hover .feature-icon i{
+  transform:translateY(-6px) translateX(10px) rotate(-22deg) scale(1.18);
 }
-/* Ekonomika — vyjede nahoru s mírným náklonem */
-.feature-card:nth-child(2):hover .feature-icon i{
-  transform:translateY(-9px) translateX(2px) rotate(12deg) scale(1.12);
+/* Ekonomika — vystřelí nahoru s náklonem */
+.features-grid > .feature-card:nth-child(2):hover .feature-icon i{
+  transform:translateY(-11px) translateX(1px) rotate(14deg) scale(1.16);
 }
-/* Frakce / A-Team — jemný pop-out */
-.feature-card:nth-child(3):hover .feature-icon i,
-.feature-card:nth-child(4):hover .feature-icon i{
-  transform:translateY(-7px) translateX(-2px) rotate(-10deg) scale(1.1);
+/* Frakce / A-Team — pop-out s náklonem */
+.features-grid > .feature-card:nth-child(3):hover .feature-icon i,
+.features-grid > .feature-card:nth-child(4):hover .feature-icon i{
+  transform:translateY(-8px) translateX(-3px) rotate(-12deg) scale(1.14);
 }
 
 .feature-title{
