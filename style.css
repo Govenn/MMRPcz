@@ -430,34 +430,51 @@ a:focus-visible, button:focus-visible{
   border:1px solid var(--border);
   border-radius:var(--radius-md);
   backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
   overflow:hidden;
+  transform:translateZ(0);
   transition:transform .5s var(--ease), border-color .5s var(--ease), background .5s var(--ease), box-shadow .5s var(--ease);
 }
-/* Bílý/barevný glow uvnitř dlaždice — ne za ní */
+/* Bílý/barevný glow jen uvnitř dlaždice (clip přes overflow) */
 .glass-card::before{
   content:'';
   position:absolute;
   inset:0;
   border-radius:inherit;
-  background:
-    radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(var(--glow-color, 255, 255, 255), 0.22), transparent 55%),
-    radial-gradient(180px circle at var(--mx,50%) var(--my,50%), rgba(var(--glow-color, 255, 255, 255), 0.1), transparent 45%);
+  background:radial-gradient(
+    280px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--glow-color, 255, 255, 255), 0.16),
+    rgba(var(--glow-color, 255, 255, 255), 0.05) 40%,
+    transparent 68%
+  );
   opacity:0;
   transition:opacity .4s ease;
   pointer-events:none;
-  z-index:3;
-  mix-blend-mode:soft-light;
+  z-index:0;
+}
+.glass-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  box-shadow:inset 0 0 48px rgba(var(--glow-color, 255, 255, 255), 0.07);
+  opacity:0;
+  transition:opacity .4s ease;
+  pointer-events:none;
+  z-index:2;
 }
 .glass-card > * {
   position:relative;
   z-index:1;
 }
 .glass-card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-6px) translateZ(0);
   border-color:var(--border-strong);
   box-shadow:0 24px 48px rgba(0,0,0,.5);
+  background:linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
 }
-.glass-card:hover::before{ opacity:1; }
+.glass-card:hover::before,
+.glass-card:hover::after{ opacity:1; }
 
 /* ============================== */
 /* STATISTIKY SMAZÁNY */
@@ -581,12 +598,11 @@ a:focus-visible, button:focus-visible{
   position:absolute;
   inset:0;
   border-radius:inherit;
-  background:radial-gradient(circle at 50% 35%, rgba(255,255,255,.28), transparent 62%);
+  background:radial-gradient(circle at 50% 35%, rgba(255,255,255,.22), transparent 62%);
   opacity:0;
   transition:opacity .4s ease;
   pointer-events:none;
   z-index:1;
-  mix-blend-mode:soft-light;
 }
 .avatar img{
   width:100%;
