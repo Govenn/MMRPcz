@@ -134,18 +134,6 @@
   }, { threshold: 0.4 });
   counters.forEach(c => counterObserver.observe(c));
 
-  // --- "Reflektorový" highlight na skleněných kartách (sleduje kurzor) ---
-  const glassCards = document.querySelectorAll('.glass-card');
-  glassCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      card.style.setProperty('--mx', x + '%');
-      card.style.setProperty('--my', y + '%');
-    });
-  });
-
   // --- FAQ akordeon (pokud je na stránce přítomen) ---
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', () => {

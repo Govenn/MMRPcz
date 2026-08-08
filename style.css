@@ -67,7 +67,7 @@ body::after{
   inset:0;
   z-index:999;
   pointer-events:none;
-  opacity:.035;
+  opacity:.025;
   mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -237,7 +237,9 @@ a:focus-visible, button:focus-visible{
   display:flex;
   align-items:center;
   gap:10px;
+  transition:opacity .3s ease;
 }
+.logo:hover{ opacity:.85; }
 .logo span{
   color:var(--gray-500);
   font-family:var(--font-mono);
@@ -326,24 +328,27 @@ a:focus-visible, button:focus-visible{
   overflow:hidden;
 }
 
-/* Signature element: pomalu se pohybující "reflektor" jako z policejního vrtulníku */
-.spotlight{
+/* Video pozadí — noční město, ztlumené overlay gradientem */
+.hero-video-wrap{
   position:absolute;
-  top:-10%;
-  width:60vw;
-  height:60vw;
-  max-width:900px;
-  max-height:900px;
-  background:radial-gradient(circle, rgba(255,255,255,.16) 0%, rgba(255,255,255,.05) 42%, transparent 70%);
-  filter:blur(40px);
-  border-radius:50%;
+  inset:0;
   z-index:0;
-  animation:sweep 16s ease-in-out infinite alternate;
+  overflow:hidden;
   pointer-events:none;
 }
-@keyframes sweep{
-  0%{   transform:translateX(-30vw) translateY(-10%); }
-  100%{ transform:translateX(30vw) translateY(6%); }
+.hero-video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(.8) brightness(.55) contrast(1.05);
+}
+.hero-video-wrap::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 40%, transparent 30%, rgba(8,8,10,.55) 100%),
+    linear-gradient(180deg, rgba(8,8,10,.72) 0%, rgba(8,8,10,.35) 40%, rgba(8,8,10,.55) 75%, var(--bg) 100%);
 }
 
 .hero-content{
@@ -355,28 +360,13 @@ a:focus-visible, button:focus-visible{
   padding:0 24px;
 }
 
-.hero-title-wrap{
-  display:block;
-  margin:0 auto;
-}
-.hero-logo{
-  width:min(50vw, 240px);
-  height:auto;
-  margin:0 auto;
-  border-radius:var(--radius-lg);
-  box-shadow:0 20px 60px rgba(0,0,0,.55);
-}
-
-/* Logo MMRP použité v navigaci a patičce (menší varianta obrázku) */
-.brand-logo-img{
-  height:38px;
-  width:auto;
-  display:block;
-  border-radius:9px;
-  transition:transform .35s ease;
-}
-.logo:hover .brand-logo-img{
-  transform:scale(1.04);
+.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(96px, 18vw, 220px);
+  line-height:.92;
+  letter-spacing:.05em;
+  color:var(--white);
+  text-shadow:0 12px 60px rgba(0,0,0,.65);
 }
 
 .hero-subtitle{
@@ -385,7 +375,7 @@ a:focus-visible, button:focus-visible{
   letter-spacing:.32em;
   text-transform:uppercase;
   color:var(--gray-300);
-  margin-top:6px;
+  margin-top:14px;
   margin-bottom:26px;
 }
 
@@ -428,53 +418,48 @@ a:focus-visible, button:focus-visible{
   isolation:isolate;
   background:linear-gradient(160deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
   border:1px solid var(--border);
+  outline:1px solid rgba(255,255,255,.03);
+  outline-offset:4px;
   border-radius:var(--radius-md);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
   overflow:hidden;
   transform:translateZ(0);
-  transition:transform .5s var(--ease), border-color .5s var(--ease), background .5s var(--ease), box-shadow .5s var(--ease);
+  transition:transform .5s var(--ease), border-color .5s var(--ease), outline-color .5s var(--ease), box-shadow .5s var(--ease);
 }
-/* Bílý/barevný glow jen uvnitř dlaždice (clip přes overflow) */
+/* Glow vychází z levého horního rohu a rozlije se přes celou dlaždici
+   (jen transform + opacity → plynulé, GPU-akcelerované) */
 .glass-card::before{
   content:'';
   position:absolute;
-  inset:0;
-  border-radius:inherit;
+  top:0; left:0;
+  width:180%;
+  aspect-ratio:1;
   background:radial-gradient(
-    240px circle at var(--mx,50%) var(--my,50%),
-    rgba(var(--glow-color, 255, 255, 255), 0.2),
-    rgba(var(--glow-color, 255, 255, 255), 0.07) 42%,
-    transparent 70%
+    circle at 0 0,
+    rgba(var(--glow-color, 255, 255, 255), 0.16),
+    rgba(var(--glow-color, 255, 255, 255), 0.05) 45%,
+    transparent 72%
   );
   opacity:0;
-  transition:opacity .4s ease;
+  transform:translate(-18%, -18%) scale(.3);
+  transform-origin:top left;
+  transition:opacity .45s var(--ease), transform .9s var(--ease);
   pointer-events:none;
   z-index:0;
-}
-.glass-card::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  box-shadow:inset 0 0 48px rgba(var(--glow-color, 255, 255, 255), 0.07);
-  opacity:0;
-  transition:opacity .4s ease;
-  pointer-events:none;
-  z-index:2;
 }
 .glass-card > * {
   position:relative;
   z-index:1;
 }
 .glass-card:hover{
-  transform:translateY(-6px) translateZ(0);
+  transform:translateY(-5px) translateZ(0);
   border-color:var(--border-strong);
-  box-shadow:0 24px 48px rgba(0,0,0,.5);
-  background:linear-gradient(160deg, rgba(255,255,255,.055), rgba(255,255,255,.02));
+  outline-color:rgba(255,255,255,.08);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
 }
-.glass-card:hover::before,
-.glass-card:hover::after{ opacity:1; }
+.glass-card:hover::before{
+  opacity:1;
+  transform:translate(-18%, -18%) scale(1);
+}
 
 /* ============================== */
 /* STATISTIKY SMAZÁNY */
@@ -595,31 +580,17 @@ a:focus-visible, button:focus-visible{
   letter-spacing:.05em;
   background:linear-gradient(155deg, rgba(255,255,255,.14), rgba(255,255,255,.02));
   border:1px solid var(--border-strong);
-  transition:box-shadow .4s ease, transform .4s ease;
-}
-.avatar::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
-  background:radial-gradient(circle at 50% 35%, rgba(255,255,255,.22), transparent 62%);
-  opacity:0;
-  transition:opacity .4s ease;
-  pointer-events:none;
-  z-index:1;
+  transition:border-color .4s ease, transform .4s ease;
 }
 .avatar img{
   width:100%;
   height:100%;
   object-fit:cover;
-  position:relative;
-  z-index:0;
 }
 .team-card:hover .avatar{
-  box-shadow:inset 0 0 28px rgba(255,255,255,.18), inset 0 0 0 1px rgba(255,255,255,.12);
-  transform:scale(1.05);
+  border-color:rgba(255,255,255,.4);
+  transform:scale(1.04);
 }
-.team-card:hover .avatar::after{ opacity:1; }
 
 .team-status{
   text-align:center;
@@ -666,40 +637,26 @@ a:focus-visible, button:focus-visible{
 }
 .team-group[data-category="management"] .team-group-title::before{
   background:rgb(var(--glow-management));
-  box-shadow:0 0 16px rgba(var(--glow-management), .8);
 }
 .team-group[data-category="high-staff"] .team-group-title::before{
   background:rgb(var(--glow-highstaff));
-  box-shadow:0 0 16px rgba(var(--glow-highstaff), .8);
 }
 .team-group[data-category="staff"] .team-group-title::before{
   background:rgb(var(--glow-staff));
-  box-shadow:0 0 16px rgba(var(--glow-staff), .8);
 }
 
-.team-card[data-category="management"] .avatar{ border-color:rgba(var(--glow-management), .55); }
-.team-card[data-category="management"] .avatar::after{
-  background:radial-gradient(circle at 50% 35%, rgba(var(--glow-management), .55), transparent 62%);
-}
-.team-card[data-category="management"]:hover .avatar{
-  box-shadow:inset 0 0 32px rgba(var(--glow-management), .45), inset 0 0 0 1px rgba(var(--glow-management), .35);
-}
+/* Kategorie: jemný barevný akcent jen na rámečku avataru a badge role */
+.team-card[data-category="management"] .avatar{ border-color:rgba(var(--glow-management), .45); }
+.team-card[data-category="management"]:hover .avatar{ border-color:rgba(var(--glow-management), .8); }
+.team-card[data-category="management"] .team-role{ border-color:rgba(var(--glow-management), .3); }
 
-.team-card[data-category="high-staff"] .avatar{ border-color:rgba(var(--glow-highstaff), .55); }
-.team-card[data-category="high-staff"] .avatar::after{
-  background:radial-gradient(circle at 50% 35%, rgba(var(--glow-highstaff), .55), transparent 62%);
-}
-.team-card[data-category="high-staff"]:hover .avatar{
-  box-shadow:inset 0 0 32px rgba(var(--glow-highstaff), .45), inset 0 0 0 1px rgba(var(--glow-highstaff), .35);
-}
+.team-card[data-category="high-staff"] .avatar{ border-color:rgba(var(--glow-highstaff), .45); }
+.team-card[data-category="high-staff"]:hover .avatar{ border-color:rgba(var(--glow-highstaff), .8); }
+.team-card[data-category="high-staff"] .team-role{ border-color:rgba(var(--glow-highstaff), .3); }
 
-.team-card[data-category="staff"] .avatar{ border-color:rgba(var(--glow-staff), .55); }
-.team-card[data-category="staff"] .avatar::after{
-  background:radial-gradient(circle at 50% 35%, rgba(var(--glow-staff), .55), transparent 62%);
-}
-.team-card[data-category="staff"]:hover .avatar{
-  box-shadow:inset 0 0 32px rgba(var(--glow-staff), .45), inset 0 0 0 1px rgba(var(--glow-staff), .35);
-}
+.team-card[data-category="staff"] .avatar{ border-color:rgba(var(--glow-staff), .45); }
+.team-card[data-category="staff"]:hover .avatar{ border-color:rgba(var(--glow-staff), .8); }
+.team-card[data-category="staff"] .team-role{ border-color:rgba(var(--glow-staff), .3); }
 
 .team-name{
   font-size:16.5px;
@@ -859,7 +816,7 @@ a:focus-visible, button:focus-visible{
   .footer-top{ grid-template-columns:1fr; gap:36px; }
   .btn-row{ flex-direction:column; width:100%; }
   .btn{ width:100%; }
-  .hero-logo{ width:min(60vw, 180px); }
+  .hero-title{ font-size:clamp(80px, 26vw, 130px); }
   .section-desc{ margin-bottom:44px; }
 }
 
