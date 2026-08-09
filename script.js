@@ -27,7 +27,7 @@
   // na něj napoj stejným způsobem jako na fetchFiveMStatus() níže.
 
   const FIVEM_CONFIG = {
-    cfxCode: "TVUJ_JOIN_KOD",  // <-- ZDE ZMEŇ na svůj join kód z cfx.re
+    cfxCode: "qqqq3jp",  // <-- ZDE ZMEŇ na svůj join kód z cfx.re
     maxPlayers: 48,               // zobrazené maximum hráčů (slots na serveru)
     maxPlayersFallback: 48,       // záložní maximum hráčů, pokud se live data nenačtou
     refreshInterval: 60000      // jak často (ms) obnovovat data — 60000 = 1 minuta
