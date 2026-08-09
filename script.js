@@ -199,21 +199,12 @@
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
       const wasOpen = item.classList.contains('open');
-      const icon = btn.querySelector('i');
 
-      // Zavřít ostatní otevřené položky
       item.closest('.faq-list').querySelectorAll('.faq-item.open').forEach(openItem => {
-        if (openItem !== item) {
-          openItem.classList.remove('open');
-          const otherIcon = openItem.querySelector('.faq-question i');
-          if (otherIcon) otherIcon.className = 'fa-solid fa-chevron-right';
-        }
+        if (openItem !== item) openItem.classList.remove('open');
       });
 
       item.classList.toggle('open', !wasOpen);
-      if (icon) {
-        icon.className = !wasOpen ? 'fa-solid fa-chevron-down' : 'fa-solid fa-chevron-right';
-      }
     });
   });
 
