@@ -66,7 +66,7 @@
     if (!playerCounter) return;
 
     playerCounter.dataset.target = online;
-    playerCounter.dataset.suffix = '';
+    playerCounter.dataset.suffix = `/${max}`;
     if (playerCounter.dataset.counted === 'true') animateCounter(playerCounter);
   }
 
