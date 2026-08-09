@@ -279,4 +279,141 @@
       });
   }
 
+  // --- Pravidla serveru ---
+  const rulesResults = document.getElementById('rulesResults');
+  if (rulesResults) {
+    const rulesSearch = document.getElementById('rulesSearch');
+    const rulesTags = document.getElementById('rulesTags');
+    const rulesCount = document.getElementById('rulesCount');
+    const rulesStatus = document.getElementById('rulesStatus');
+
+    let rulesData = null;
+    let activeTag = 'all';
+    let searchQuery = '';
+
+    const escapeHtml = (str) =>
+      String(str).replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+      }[c]));
+
+    function getTagLabel(id){
+      if (!rulesData) return id;
+      if (id === 'all') return 'Vše';
+      const tag = rulesData.tags.find(t => t.id === id);
+      return tag ? tag.label : id;
+    }
+
+    function ruleMatches(rule){
+      const q = searchQuery.trim().toLowerCase();
+      const tagOk = activeTag === 'all' || rule.tags.includes(activeTag);
+      if (!tagOk) return false;
+      if (!q) return true;
+      const haystack = `${rule.title} ${rule.content}`.toLowerCase();
+      return haystack.includes(q);
+    }
+
+    function renderTags(){
+      if (!rulesData) return;
+      const tags = [{ id: 'all', label: 'Vše' }, ...rulesData.tags];
+      rulesTags.innerHTML = tags.map(tag => `
+        <button type="button" class="rules-tag${activeTag === tag.id ? ' is-active' : ''}" data-tag="${tag.id}">
+          ${escapeHtml(tag.label)}
+        </button>
+      `).join('');
+
+      rulesTags.querySelectorAll('.rules-tag').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeTag = btn.dataset.tag;
+          renderTags();
+          renderRules();
+        });
+      });
+    }
+
+    function renderRuleCard(rule){
+      return `
+        <article class="glass-card rule-card" data-rule-id="${escapeHtml(rule.id)}">
+          <button type="button" class="rule-card-toggle" aria-expanded="false">
+            <div class="rule-card-main">
+              <h3 class="rule-card-title">${escapeHtml(rule.title)}</h3>
+              <div class="rule-card-tags">
+                ${rule.tags.map(tagId => `<span class="rule-card-tag">${escapeHtml(getTagLabel(tagId))}</span>`).join('')}
+              </div>
+            </div>
+            <i class="fa-solid fa-chevron-down rule-card-icon"></i>
+          </button>
+          <div class="rule-card-body">
+            <div class="rule-card-content">
+              <div class="rule-card-content-inner">${rule.content}</div>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function bindRuleCards(){
+      rulesResults.querySelectorAll('.rule-card-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.rule-card');
+          const isOpen = card.classList.toggle('is-open');
+          btn.setAttribute('aria-expanded', isOpen);
+        });
+      });
+    }
+
+    function renderRules(){
+      if (!rulesData) return;
+
+      const visible = rulesData.rules.filter(ruleMatches);
+      rulesCount.textContent = `Zobrazeno ${visible.length} z ${rulesData.rules.length}`;
+
+      if (visible.length === 0){
+        rulesResults.innerHTML = '<p class="rules-empty">Žádné pravidlo neodpovídá hledání. Zkus jiný výraz nebo tag.</p>';
+        return;
+      }
+
+      const grouped = rulesData.categories.map(cat => ({
+        ...cat,
+        rules: visible.filter(r => r.category === cat.id),
+      })).filter(cat => cat.rules.length > 0);
+
+      rulesResults.innerHTML = grouped.map(cat => `
+        <section class="rules-category">
+          <div class="rules-category-head">
+            <i class="fa-solid ${escapeHtml(cat.icon)}"></i>
+            <h2 class="rules-category-title">${escapeHtml(cat.label)}</h2>
+          </div>
+          <div class="rules-list">
+            ${cat.rules.map(renderRuleCard).join('')}
+          </div>
+        </section>
+      `).join('');
+
+      bindRuleCards();
+    }
+
+    fetch('pravidla.json', { cache: 'no-store' })
+      .then(res => {
+        if (!res.ok) throw new Error('pravidla.json nenalezen');
+        return res.json();
+      })
+      .then(data => {
+        rulesData = data;
+        rulesStatus.remove();
+        renderTags();
+        renderRules();
+      })
+      .catch(() => {
+        rulesStatus.textContent = 'Pravidla se nepodařilo načíst. Zkus to prosím později.';
+        rulesCount.textContent = '';
+      });
+
+    if (rulesSearch){
+      rulesSearch.addEventListener('input', () => {
+        searchQuery = rulesSearch.value;
+        renderRules();
+      });
+    }
+  }
+
 })();

@@ -8,6 +8,8 @@ hostovaná na GitHub Pages, doména `mmrp.fun`.
 ```
 index.html      – hlavní stránka
 tym.html        – A-Team (data se načítají automaticky z team.json)
+pravidla.html   – Pravidla serveru (data z pravidla.json)
+pravidla.json   – seznam všech pravidel serveru
 style.css       – veškerý styl webu
 script.js       – veškerá interaktivita (menu, animace, statistiky, tým)
 logo.webp       – logo MMRP

@@ -1,0 +1,562 @@
+{
+  "tags": [
+    {
+      "id": "pojmy",
+      "label": "Základní pojmy"
+    },
+    {
+      "id": "prikazy",
+      "label": "Příkazy"
+    },
+    {
+      "id": "combat",
+      "label": "Combat & PvP"
+    },
+    {
+      "id": "chovani",
+      "label": "Chování"
+    },
+    {
+      "id": "nelegal",
+      "label": "Nelegál"
+    },
+    {
+      "id": "statni",
+      "label": "Státní složky"
+    },
+    {
+      "id": "frakce",
+      "label": "Frakce & gangy"
+    },
+    {
+      "id": "chat",
+      "label": "Chat & OOC"
+    },
+    {
+      "id": "meta",
+      "label": "Meta & bugy"
+    }
+  ],
+  "categories": [
+    {
+      "id": "zakladni",
+      "label": "Základní pravidla",
+      "icon": "fa-book"
+    },
+    {
+      "id": "pokrocila",
+      "label": "Pokročilá pravidla",
+      "icon": "fa-scale-balanced"
+    },
+    {
+      "id": "frakcni",
+      "label": "Frakční pravidla",
+      "icon": "fa-users"
+    }
+  ],
+  "rules": [
+    {
+      "id": "rp",
+      "title": "RP │ ROLEPLAY",
+      "category": "zakladni",
+      "tags": [
+        "pojmy"
+      ],
+      "content": "<p>Roleplay/RP je hraní za postavu s fiktivním příběhem. Kdy se snažíme co nejvíce vžít do role a zůstat v charakteru, neboli do jisté míry simulujeme reálný život.</p>"
+    },
+    {
+      "id": "ic",
+      "title": "IC │ IN CHARACTER",
+      "category": "zakladni",
+      "tags": [
+        "pojmy"
+      ],
+      "content": "<p>Hraní své role a veškeré věci co se dějí během toho co hráč interaguje za svou postavu. Zkráceně bychom řekli že je to vše co se děje ve hře.</p>"
+    },
+    {
+      "id": "ooc",
+      "title": "OOC │ OUT OF CHARACTER",
+      "category": "zakladni",
+      "tags": [
+        "pojmy",
+        "chat"
+      ],
+      "content": "<p>Veškerá komunikace mimo RP. Situace kdy se hráč nachází mimo hru nebo jeho charakter.</p>"
+    },
+    {
+      "id": "me",
+      "title": "/ME",
+      "category": "zakladni",
+      "tags": [
+        "prikazy"
+      ],
+      "content": "<p>Popisuje určitou činnost a nahrazuje animace, které nelze provést přímo ve hře.</p><p><strong>PŘÍKLAD:</strong> /me otevírá peněženku, /me dává krabici na stůl</p>"
+    },
+    {
+      "id": "do",
+      "title": "/DO",
+      "category": "zakladni",
+      "tags": [
+        "prikazy"
+      ],
+      "content": "<p>Slouží k popisu vykonání činnosti s očekáváním reakce jiného hráče, popřípadě k širšímu popisu situace. Do /do se nesmí lhát a musí se vždy odpovídat (jinak se to považuje za vyhíbání RP akce).</p><p><strong>PŘÍKLAD:</strong> /do jaký je stav? - /do stabilizovaný, /do sedí fotka na ID card? - /do ano</p>"
+    },
+    {
+      "id": "try",
+      "title": "/TRY",
+      "category": "zakladni",
+      "tags": [
+        "prikazy"
+      ],
+      "content": "<p>Náhodné vygenerování odpovědi ANO/NE v reakci na /do.</p>"
+    },
+    {
+      "id": "doc",
+      "title": "/DOC",
+      "category": "zakladni",
+      "tags": [
+        "prikazy"
+      ],
+      "content": "<p>Slouží k odpočtu času u činností (např. ošetření, opravy).</p>"
+    },
+    {
+      "id": "mixing",
+      "title": "MIXING",
+      "category": "zakladni",
+      "tags": [
+        "pojmy",
+        "chat",
+        "meta"
+      ],
+      "content": "<p>Braní si pojmů z OOC do IC.</p><p><strong>Je zakázáno</strong> vyjadřování OOC pojmů do IC nebo využívat informace z jedné postavy na druhou.</p>"
+    },
+    {
+      "id": "kos",
+      "title": "KOS │ KILL ON SIGHT",
+      "category": "zakladni",
+      "tags": [
+        "combat",
+        "chovani"
+      ],
+      "content": "<p>Zabití hráče bez předešlé RP interakce je zakázáno. Aby jste někoho mohli zabít bez předešlé interakce, musíte mít RP důvod (např. berou vám kamaráda policisti a aby jste tomu zabránili tak se domluvíte přes vysílačku, že dorazíš na místo a postřílíš je).</p>"
+    },
+    {
+      "id": "ck",
+      "title": "CK │ CHARACTER KILL",
+      "category": "zakladni",
+      "tags": [
+        "pojmy",
+        "chovani"
+      ],
+      "content": "<p>Trvalé ukončení a vymazání postavy.</p><p><strong>Typy CK:</strong></p><ul><li>Frakční CK</li><li>Situační CK</li><li>Jail CK</li><li>Self CK</li></ul>"
+    },
+    {
+      "id": "pk",
+      "title": "PK │ PLAYER KILL",
+      "category": "zakladni",
+      "tags": [
+        "pojmy",
+        "combat"
+      ],
+      "content": "<ul><li>Situace kdy se hráč nachází v deadscreenu a musí být ošetřen kvalifikovanou osobou. Možnosti lidí, kteří mohou dané zranění ošetřit se odvíjí od závažnosti zranění.</li><li>Postava si po PK veškeré události pamatuje. Je možné zaRPit krátkodobou ztrátu paměti po úderu tvrdým předmětem do hlavy. Postava si nicméně po kratší době může začít vzpomínat na veškeré informace před PK.</li></ul>"
+    },
+    {
+      "id": "injuries",
+      "title": "INJURIES",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "combat"
+      ],
+      "content": "<p>Ignorování zranění je zakázáno. Postava se musí chovat adekvátně ke zraněním. Injuries se musí RPit jak přes /do, /me, /try a /doc tak i přes IC mikrofon.</p>"
+    },
+    {
+      "id": "fail-rp",
+      "title": "FAIL RP",
+      "category": "zakladni",
+      "tags": [
+        "chovani"
+      ],
+      "content": "<p>Za FailRP se považuje veškeré vystoupení z loru postavy, frakce, troll v RP, nerespektování výše postavených lidí ve frakci. Všeobecně veškeré nelogické počínání v rámci IC, které narušuje plynulost herního zážitku pro všechny hráče.</p><p><strong>ZÁKAZY:</strong></p><ul><li>Střílení z vrtulníku</li><li>Sprayování na frakční sídla</li><li>Kradení vozidel státních složek</li></ul>"
+    },
+    {
+      "id": "trash-rp",
+      "title": "TRASH RP",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "statni"
+      ],
+      "content": "<p>Trash RP se vztahuje i pro státní složky, což znamená, např. když utíkáte tak vás nebude policista střílet kvůli tomu, že utíkáte, ale bude se snažit použít třeba taser (záleží na situaci).</p>"
+    },
+    {
+      "id": "non-rp-driving",
+      "title": "NON RP DRIVING",
+      "category": "zakladni",
+      "tags": [
+        "chovani"
+      ],
+      "content": "<p>Jezdění v příliš těžkém terénu s vozidlem, které není pro takový terén stavěno.</p>"
+    },
+    {
+      "id": "vdm",
+      "title": "VDM │ VEHICLE DEATHMATCH",
+      "category": "zakladni",
+      "tags": [
+        "combat",
+        "chovani"
+      ],
+      "content": "<ul><li>Úmyslné narážení do okolních vozidel, objektů nebo hráčů bez pádního RP důvodu.</li><li>Auto lze použít jako zbraň proti hráči pouze v krajních případech, kdy už vám nezbývá žádná další možnost.</li></ul>"
+    },
+    {
+      "id": "pravidlo-inventare",
+      "title": "PRAVIDLO INVENTÁŘE",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "meta"
+      ],
+      "content": "<p>Co nemáš v inventáři, nemůžeš RPit. Všechny itemy co dáte na zem musí být dané v taštičce (př. itemy z emotů co spadnou na zem se nepočítají jako používatelný item a nemůžete ho RPit, že ho máte u sebe nebo, že jste ho položil na zem jelikož nejde sebrat).</p>"
+    },
+    {
+      "id": "combat-log",
+      "title": "COMBAT LOG",
+      "category": "zakladni",
+      "tags": [
+        "combat",
+        "meta"
+      ],
+      "content": "<ul><li>Odpojení se z RP za účelem vyhnutí se jakékoli interakce.</li><li>V případě že k odpojení dojde na základě technických potíží, je hráč povinnen informovat AT nebo ostatní hráče v dané RP akci.</li><li>Ze serveru se lze odpojit po uplynutí 10 minut po RP akci.</li></ul>"
+    },
+    {
+      "id": "combat-comeback",
+      "title": "COMBAT COMEBACK",
+      "category": "zakladni",
+      "tags": [
+        "combat"
+      ],
+      "content": "<p>Návrat do probíhající RP akce po PK není povolen. Návrat do přestřelky po tom co jste z ní ujeli je zakázáno, musíte RPit Passive RP a už dávno by tam bylo několik policistů.</p>"
+    },
+    {
+      "id": "nvl",
+      "title": "NVL │ NOT VALUING LIFE",
+      "category": "zakladni",
+      "tags": [
+        "combat",
+        "chovani"
+      ],
+      "content": "<p>Hráč si musí vážit svého života postavy a musí RPit strach.</p><p><strong>PŘÍKLAD:</strong></p><ul><li>V případě, že uslyšíte střelbu, nepoběžíte k danému místo, nýbrž pryč.</li><li>V případě, že jste na Mount Chilliadu, nevezmete motorku a nepojedete střemhlav dolu.</li></ul>"
+    },
+    {
+      "id": "fear-rp",
+      "title": "FEAR RP",
+      "category": "zakladni",
+      "tags": [
+        "combat",
+        "chovani"
+      ],
+      "content": "<ul><li>Existuje několik druhů ,,Fearu\" (Gun Fear, Cop Fear, Jail Fear, Job Fear, Dog Fear, Hood Fear). Všeobecně se dá říct, že se jedná o znázornění strachu z dané situace.</li><li>Mohou být situace, kdy se zachováte nebojácně, ale budete muset býti schopni si to obhájit v řešení/reportu.</li><li>Hráč se může dostat do situace, kde na něj například miří 3 lidé a chtějí ho okrást. V danou chvíli si nebude hrát na hrdinu a bude spolupracovat kvůli strachu ze ztráty života (Gun Fear).</li></ul>"
+    },
+    {
+      "id": "metagaming",
+      "title": "METAGAMING",
+      "category": "zakladni",
+      "tags": [
+        "meta",
+        "chat"
+      ],
+      "content": "<p>Využití OOC informací v prospěch IC. Postava by normálně neměla jak informace zjistit.</p><p>Stream sniping je u nás brán taktéž jako metagaming.</p><p><strong>PŘÍKLAD:</strong> Oznámím kamarádům na Discordu, že mě někdo unáší, aby mi přišli na dané místo pomoct.</p>"
+    },
+    {
+      "id": "gross-rp",
+      "title": "GROSS RP",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "chat"
+      ],
+      "content": "<ul><li>Gross RP je všeobecně jakékoliv nechutné, či drsné jednání v rámci RP.</li><li>Pakliže chcete provádět GrossRP, je potřeba souhlas všech zapojených hráčů přes L-OOC chat.</li><li>Hráč může svůj souhlas odvolat, či požádat o zmírnění Grossu.</li></ul><p><strong>DO GROSSU PATŘÍ:</strong></p><ul><li>Sexuální obtěžování, znásilnění a celkově Sex RP</li><li>Mučení</li><li>Kanibalismus</li><li>Nechutné detaily pro doplnění animací etc.</li></ul>"
+    },
+    {
+      "id": "powergaming",
+      "title": "POWERGAMING",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "meta"
+      ],
+      "content": "<p>Využívání nadlidských sil, využívání herní mechaniky, která nedává v reálném světě smysl.</p><p><strong>PŘÍKLAD:</strong> /me zvedá kamion a hází ho na něj</p>"
+    },
+    {
+      "id": "rdm",
+      "title": "RDM │ RANDOM DEATHMATCH",
+      "category": "zakladni",
+      "tags": [
+        "combat"
+      ],
+      "content": "<p>Je zakázáno vyvolávat bezvýznamné kropky/fighty.</p>"
+    },
+    {
+      "id": "pointless-shooting",
+      "title": "POINTLESS SHOOTING",
+      "category": "zakladni",
+      "tags": [
+        "combat"
+      ],
+      "content": "<p>Nesmyslné střílení bez RP kontextu je zakázáno.</p>"
+    },
+    {
+      "id": "trash-talking",
+      "title": "TRASH TALKING",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "chat"
+      ],
+      "content": "<p>Zbytečné nadávání a nevhodné chování je zakázáno.</p>"
+    },
+    {
+      "id": "passive-rp",
+      "title": "PASSIVE RP",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "nelegal"
+      ],
+      "content": "<p>Město je považováno za zalidněné. Hráči musí jednat s ohledem na přítomnost NPC obyvatel. Nemůžete Passive RP zneužít proto aby jste se schovali před akcí. Nelegální aktivity mohou probíhat po celé mapě kromě hard Passive zóny. Na hard Passivu se nesmí provádět nelegální činnosti (nesmí být zneužit např. mechanik bude campit v dílně aby ho nikdo neunesl).</p><p>hard Passive zóny:</p><ul><li>Pillbox Hill Medical Center (EMS)</li><li>Mission Row Police Station (LSPD)</li><li>Sandy Shores Sheriff's Station (LSSD)</li><li>Fort Zancudo (Vojenská základna)</li><li>Hlavní garáže</li><li>Motel (Osobní sklad)</li><li>Všechny podniky a dílny</li></ul>"
+    },
+    {
+      "id": "treti-strana",
+      "title": "TŘETÍ STRANA",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "combat"
+      ],
+      "content": "<p>Pokud je nějaká vykrádačka, střelba, akce apod. tak nemůžete jako třetí strana přijít na akci a začít nějakým způsobem narušovat RP akci.</p>"
+    },
+    {
+      "id": "water-evading",
+      "title": "WATER EVADING",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "combat"
+      ],
+      "content": "<p>Využívání oceánu na útěk.</p>"
+    },
+    {
+      "id": "random-looting",
+      "title": "RANDOM LOOTING",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "nelegal"
+      ],
+      "content": "<p>Braní věcí random lidem se kterými jste neměly RP akci.</p>"
+    },
+    {
+      "id": "looting-statnich-slozek",
+      "title": "LOOTING STÁTNÍCH SLOŽEK",
+      "category": "zakladni",
+      "tags": [
+        "statni",
+        "nelegal"
+      ],
+      "content": "<p>Braní povinné výbavy členům státních složek (povinná výbava se značí, sériovým číslem: PD/SD, SAND a EMS + jako povinná výbava pro státní složky se berou i itemy které nemají seriové číslo ale jsou částí povinné výbavy, jako: Pouta, Flashbang etc.).</p>"
+    },
+    {
+      "id": "l-ooc-chat",
+      "title": "L-OOC CHAT",
+      "category": "zakladni",
+      "tags": [
+        "chat"
+      ],
+      "content": "<p>L-OOC chat je povolen pouze v nezbytných případech.</p><p><strong>POVOLENÉ</strong></p><ul><li>Technické problémy (crash, bug)</li><li>Krátká organizační sdělení (nutné minimum)</li></ul><p><strong>ZÁKAZ</strong></p><ul><li>Vysvětlování RP situací</li><li>Řešení konfliktů</li><li>Radění ostatním hráčům při akci (nevztahuje se radění na emoty etc.)</li><li>Upozorňování na pravidla během RP</li></ul>"
+    },
+    {
+      "id": "advertising",
+      "title": "ADVERTISING",
+      "category": "zakladni",
+      "tags": [
+        "chat"
+      ],
+      "content": "<p>Promování Discord server pozvánek, názvů nebo odkazů ve svůj prospěch.</p>"
+    },
+    {
+      "id": "n-word",
+      "title": "N-WORD",
+      "category": "zakladni",
+      "tags": [
+        "chovani",
+        "frakce",
+        "chat"
+      ],
+      "content": "<ul><li>N-word mohou používat pouze gangy a to v hoodech či blízkém okolí downtown.</li><li>N-word lze použít v případě: užití slangu, beefu etc.</li><li><strong>Je zakázano</strong> použít N-word v rasistickém contextu.</li><li><strong>Je zakázano</strong> použít český nebo slovenský výraz viz \"negr, negře\" etc.</li></ul>"
+    },
+    {
+      "id": "pravidlo-vykradani",
+      "title": "PRAVIDLO VYKRÁDÁNÍ",
+      "category": "pokrocila",
+      "tags": [
+        "nelegal",
+        "statni"
+      ],
+      "content": "<ul><li>Povinnost čekat stanovenou dobu na příjezd státních složek (5 minut).</li><li>Povolená střelba na akci je povolená až po 2 minutách vyjednávání.</li><li>Zákaz vykrádání 30 minut před restartem serveru.</li><li>NPC se dá považovat za rukojmého.</li><li>Zákaz zneužívání interiérů na teleport.</li><li>Maximální počet za rukojmího je $30,000.</li></ul>"
+    },
+    {
+      "id": "drzeni-osob",
+      "title": "DRŽENÍ OSOB",
+      "category": "pokrocila",
+      "tags": [
+        "nelegal",
+        "chovani"
+      ],
+      "content": "<ul><li>Maximální doba únosu je omezena na 2 hodiny reálného času.</li><li>Povinnost RPit péči o unesenou osobu.</li><li>Zákaz vynucování převodů majetku.</li><li>Zákaz únosů do teleport interiérů.</li><li>Je zakázáno unášet jen z důvodu lootingu inventáře.</li><li>Je zakázáno unášet z banky, jedině jak můžete někoho unést z banky je, že ho použijete jako rukojmého na místě při vykrádačce.</li></ul>"
+    },
+    {
+      "id": "cop-baiting",
+      "title": "COP BAITING",
+      "category": "pokrocila",
+      "tags": [
+        "statni",
+        "nelegal",
+        "combat"
+      ],
+      "content": "<p>Úmyslné provokování státních složek je zakázáno. Za Cop Baiting se považuje začít vykrádat jen z toho důvodu, aby jste mohli státní složky střílet.</p>"
+    },
+    {
+      "id": "rozeznani-osob",
+      "title": "ROZEZNÁNÍ OSOB",
+      "category": "pokrocila",
+      "tags": [
+        "chovani"
+      ],
+      "content": "<p>Člověka nemůžete poznat podle hlasu, oblečení nebo chování. Vždycky si to musíte ověřit jménem.</p>"
+    },
+    {
+      "id": "air-passive",
+      "title": "AIR PASSIVE",
+      "category": "pokrocila",
+      "tags": [
+        "statni",
+        "chovani"
+      ],
+      "content": "<p>Je zakázáno lítat helikoptérou ponad vládní objekty jako jsou: Los Santos letiště, Government budova, Fort Zancudo base, Vespucci stanice, Davis stanice, Vězení nebo Nemocnice.</p>"
+    },
+    {
+      "id": "pussy-hunting",
+      "title": "PUSSY HUNTING",
+      "category": "pokrocila",
+      "tags": [
+        "chovani"
+      ],
+      "content": "<p>Úmyslné vyhledávání, pronásledování, spotění a obtěžování žen.</p>"
+    },
+    {
+      "id": "ninja-jacking",
+      "title": "NINJA JACKING",
+      "category": "pokrocila",
+      "tags": [
+        "nelegal",
+        "chovani"
+      ],
+      "content": "<p>Krádež NPC vozidla bez adekvátního zaRPení je zakázána. Přísný zákaz krádeže vozidel ostatních hráčů bez pádného RP důvodu. Pokud se jedná o RP situaci kdy nemáte jinou možnost jak se dostat z akce, může být udělena výjimka.</p>"
+    },
+    {
+      "id": "bugy",
+      "title": "BUGY",
+      "category": "pokrocila",
+      "tags": [
+        "meta"
+      ],
+      "content": "<p>Zneužívání bugů je zakázáno. Bugy musí být RPeny. Pro bugy se berou i zneužívání animací.</p>"
+    },
+    {
+      "id": "bush-camping",
+      "title": "BUSH CAMPING",
+      "category": "pokrocila",
+      "tags": [
+        "combat",
+        "chovani"
+      ],
+      "content": "<p>Je zakázáno používat keře a vysoké trávy k tomu, aby jste se schovali před druhou stranou.</p>"
+    },
+    {
+      "id": "dodatkove-modifikace",
+      "title": "DODATKOVÉ MODIFIKACE",
+      "category": "pokrocila",
+      "tags": [
+        "meta"
+      ],
+      "content": "<p>Je zakázáno používat dodaktové modifikace které se nenachází na serveru.</p>"
+    },
+    {
+      "id": "pvp-pravidla",
+      "title": "PVP PRAVIDLA",
+      "category": "pokrocila",
+      "tags": [
+        "combat"
+      ],
+      "content": "<ul><li><strong>Je zakázáno</strong> střílet z neprůstřelného vozidla.</li><li><strong>Je zakázáno</strong> střílet, či bránit se střelbě pomocí otevření kapoty nebo kufru.</li></ul>"
+    },
+    {
+      "id": "maximalni-pocet-clenu",
+      "title": "MAXIMÁLNÍ POČET ČLENŮ",
+      "category": "frakcni",
+      "tags": [
+        "frakce"
+      ],
+      "content": "<ul><li>Neutral/Legal frakce - ∞ členů</li><li>Nelegal frakce - 16 členů</li><li>Gang - 30 členů</li></ul>"
+    },
+    {
+      "id": "korupce",
+      "title": "KORUPCE",
+      "category": "frakcni",
+      "tags": [
+        "frakce",
+        "statni"
+      ],
+      "content": "<p>Zneužívání pravomoci své práce nebo postavení. O korupci si lze žádat v ticketu.</p><p><strong>ZÁKAZ</strong></p><ul><li>RPpit korupci bez schválení</li><li>Využívat korupci ve prospěch zvyšování majetku</li></ul>"
+    },
+    {
+      "id": "snitching",
+      "title": "SNITCHING",
+      "category": "frakcni",
+      "tags": [
+        "frakce",
+        "nelegal"
+      ],
+      "content": "<p>Aby jste mohli někomu prozradit informace ohledně nelegálky ve které se nacházíte, musíte si na to sepsat ticket. (Pokud jste vyslýcháni PD/SD může být udělená výjimka).</p>"
+    },
+    {
+      "id": "frakce-a-statni-slozky",
+      "title": "FRAKCE A STÁTNÍ SLOŽKY",
+      "category": "frakcni",
+      "tags": [
+        "frakce",
+        "statni"
+      ],
+      "content": "<p>Zákaz nelegálních aktivit pro státní složky. Připojení do nelegální frakce se automaticky schvaluje Frakční CK. Na každou pozici, práci nebo frakci musí být napsán ticket a musí být schválen vedením serveru nebo frakčním supportem. Pokud odpojíte nelegálku bez souhlasu patrona, máte automaticky CK. Zakázáno se vydávat za státní složku.</p>"
+    },
+    {
+      "id": "gang-pravidla",
+      "title": "GANG PRAVIDLA",
+      "category": "frakcni",
+      "tags": [
+        "frakce",
+        "combat"
+      ],
+      "content": "<p>Povinnost identity a struktury (vztahuje se pouze na hood). Gang wars pouze se souhlasem obou stran a vedením serveru přes ticket. Zákaz lootingu mezi gangy. Žádný fasování na nějaké místo (do uličky ANO). Zákaz kropení dlouhou mezi sebou. Při drive by, bát se o život schovat se nebo utíkat a až pak střilet. Musíte mít důvod na kropení. Chicken running - když se střílí můžeš utíkat jen rovně. Nesmí se střílet ze střech.</p>"
+    },
+    {
+      "id": "uzemi-gangu",
+      "title": "ÚZEMÍ GANGŮ",
+      "category": "frakcni",
+      "tags": [
+        "frakce"
+      ],
+      "content": "<p>Jsou považována za vysoce riziková místa. Člověk by se správně neměl zdržovat v okolí území.</p>"
+    }
+  ]
+}
