@@ -220,7 +220,6 @@
   const teamGrid = document.getElementById('teamGrid');
   if (teamGrid) {
     const teamStatus = document.getElementById('teamStatus');
-    const teamUpdated = document.getElementById('teamUpdated');
 
     const escapeHtml = (str) =>
       String(str).replace(/[&<>"']/g, (c) => ({
@@ -272,10 +271,6 @@
             </section>
           `).join('');
 
-        if (data.updatedAt) {
-          const d = new Date(data.updatedAt);
-          teamUpdated.textContent = 'Naposledy aktualizováno: ' + d.toLocaleString('cs-CZ');
-        }
       })
       .catch(() => {
         teamStatus.textContent = 'Tým se nepodařilo načíst. Zkus to prosím později nebo nás najdi na Discordu.';
