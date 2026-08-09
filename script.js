@@ -31,10 +31,48 @@
     refreshInterval: 60000      // jak často (ms) obnovovat data — 60000 = 1 minuta
   };
 
+  const DISCORD_CONFIG = {
+    inviteCode: "dqZ7HvwFc6",   // invite kód z discord.gg/...
+    refreshInterval: 60000
+  };
+
+  function animateCounter(el){
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1700;
+    const startTime = performance.now();
+
+    function tick(now){
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+      el.textContent = value.toFixed(decimals) + suffix;
+      if (progress < 1){
+        requestAnimationFrame(tick);
+      } else {
+        el.dataset.counted = 'true';
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function updatePlayerDisplays(online, max){
+    document.querySelectorAll('.js-player-count').forEach(el => {
+      el.textContent = `${online}/${max}`;
+    });
+
+    const playerCounter = document.getElementById('playerCounter');
+    if (!playerCounter) return;
+
+    playerCounter.dataset.target = online;
+    playerCounter.dataset.suffix = '';
+    if (playerCounter.dataset.counted === 'true') animateCounter(playerCounter);
+  }
+
   async function fetchFiveMStatus(){
     const dots = document.querySelectorAll('.js-status-dot');
     const texts = document.querySelectorAll('.js-status-text');
-    const playerCounter = document.getElementById('playerCounter');
 
     try{
       const res = await fetch(`https://servers-frontend.fivem.net/api/servers/single/${FIVEM_CONFIG.cfxCode}`);
@@ -45,12 +83,7 @@
       const online = data.clients ?? 0;
       const max = data.sv_maxclients || FIVEM_CONFIG.maxPlayersFallback;
 
-      if (playerCounter){
-        playerCounter.dataset.target = online;
-        playerCounter.dataset.suffix = ' / ' + max;
-        // pokud karta se statistikou už byla na obrazovce spočítaná, přepočítej ji hned znovu
-        if (playerCounter.dataset.counted === 'true') animateCounter(playerCounter);
-      }
+      updatePlayerDisplays(online, max);
 
       dots.forEach(d => d.classList.remove('is-offline'));
       texts.forEach(t => t.textContent = 'Server online');
@@ -58,16 +91,34 @@
     }catch(err){
       dots.forEach(d => d.classList.add('is-offline'));
       texts.forEach(t => t.textContent = 'Server offline');
-      if (playerCounter){
-        playerCounter.dataset.target = 0;
-        playerCounter.dataset.suffix = ' / ' + FIVEM_CONFIG.maxPlayersFallback;
-        if (playerCounter.dataset.counted === 'true') animateCounter(playerCounter);
-      }
+      updatePlayerDisplays(0, FIVEM_CONFIG.maxPlayersFallback);
+    }
+  }
+
+  async function fetchDiscordMembers(){
+    const discordCounter = document.getElementById('discordCounter');
+    if (!discordCounter) return;
+
+    try{
+      const res = await fetch(`https://discord.com/api/v9/invites/${DISCORD_CONFIG.inviteCode}?with_counts=true`);
+      if (!res.ok) throw new Error('Discord neodpovídá');
+      const data = await res.json();
+      const count = data.approximate_member_count ?? 0;
+
+      discordCounter.dataset.target = count;
+      discordCounter.dataset.suffix = '';
+      if (discordCounter.dataset.counted === 'true') animateCounter(discordCounter);
+    }catch(err){
+      discordCounter.dataset.target = 0;
+      discordCounter.dataset.suffix = '';
+      if (discordCounter.dataset.counted === 'true') animateCounter(discordCounter);
     }
   }
 
   fetchFiveMStatus();
   setInterval(fetchFiveMStatus, FIVEM_CONFIG.refreshInterval);
+  fetchDiscordMembers();
+  setInterval(fetchDiscordMembers, DISCORD_CONFIG.refreshInterval);
 
   // --- Hero YouTube: skrýt flash play tlačítka při startu ---
   const heroVideoWrap = document.querySelector('.hero-video-wrap');
@@ -115,27 +166,6 @@
   revealEls.forEach(el => revealObserver.observe(el));
 
   // --- Animované počítadlo statistik ---
-  function animateCounter(el){
-    const target = parseFloat(el.dataset.target);
-    const decimals = parseInt(el.dataset.decimals || '0', 10);
-    const suffix = el.dataset.suffix || '';
-    const duration = 1700;
-    const startTime = performance.now();
-
-    function tick(now){
-      const progress = Math.min((now - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const value = target * eased;
-      el.textContent = value.toFixed(decimals) + suffix;
-      if (progress < 1){
-        requestAnimationFrame(tick);
-      } else {
-        el.dataset.counted = 'true';
-      }
-    }
-    requestAnimationFrame(tick);
-  }
-
   const counters = document.querySelectorAll('.counter');
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
