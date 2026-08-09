@@ -1,15 +1,16 @@
 (function(){
   "use strict";
 
-  // --- Čisté URL bez index.html a koncové lomítko u /tym ---
+  // --- Čisté URL bez index.html a koncového lomítka u /tym ---
   if (location.pathname.endsWith('/index.html')) {
     history.replaceState(null, '', location.pathname.replace(/\/index\.html$/, '/') + location.search + location.hash);
-  } else if (location.pathname === '/tym/') {
+  } else if (location.pathname === '/tym/' || location.pathname.endsWith('/tym/index.html')) {
     history.replaceState(null, '', '/tym' + location.search + location.hash);
   }
 
   // Aktuální rok v patičce
-  document.getElementById('year').textContent = new Date().getFullYear();
+  const yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // ============================================================
   // ŽIVÁ DATA ZE SERVERU (počet hráčů + online/offline stav)
@@ -150,27 +151,31 @@
 
   // --- Navigace: pozadí při scrollu ---
   const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive:true });
+  if (nav) {
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive:true });
+  }
 
   // --- Mobilní menu ---
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', () => {
-    const isOpen = navLinks.classList.toggle('open');
-    navToggle.classList.toggle('is-open', isOpen);
-    navToggle.setAttribute('aria-expanded', isOpen);
-    navToggle.setAttribute('aria-label', isOpen ? 'Zavřít menu' : 'Otevřít menu');
-  });
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      navToggle.classList.remove('is-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      navToggle.setAttribute('aria-label', 'Otevřít menu');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('is-open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navToggle.setAttribute('aria-label', isOpen ? 'Zavřít menu' : 'Otevřít menu');
     });
-  });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Otevřít menu');
+      });
+    });
+  }
 
   // --- Scroll reveal animace ---
   const revealEls = document.querySelectorAll('.reveal');
