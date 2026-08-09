@@ -133,13 +133,21 @@
   fetchDiscordMembers();
   setInterval(fetchDiscordMembers, DISCORD_CONFIG.refreshInterval);
 
-  // --- Hero YouTube: skrýt flash play tlačítka při startu ---
+  // --- Hero video: plynulé odhalení po načtení ---
   const heroVideoWrap = document.querySelector('.hero-video-wrap');
   const heroVideo = document.querySelector('.hero-video');
   if (heroVideoWrap && heroVideo) {
     const revealHeroVideo = () => heroVideoWrap.classList.add('is-ready');
-    heroVideo.addEventListener('load', () => setTimeout(revealHeroVideo, 900));
-    setTimeout(revealHeroVideo, 3500);
+    const onHeroVideoReady = () => setTimeout(revealHeroVideo, 400);
+
+    heroVideo.addEventListener('canplay', onHeroVideoReady, { once: true });
+    heroVideo.addEventListener('loadeddata', onHeroVideoReady, { once: true });
+    setTimeout(revealHeroVideo, 2500);
+
+    const playPromise = heroVideo.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {});
+    }
   }
 
   // --- Navigace: pozadí při scrollu ---

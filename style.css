@@ -414,7 +414,7 @@ a:focus-visible, button:focus-visible{
   overflow:hidden;
 }
 
-/* Video pozadí — noční město, ztlumené overlay gradientem */
+/* Video pozadí — lokální soubor, ztlumené overlay gradientem */
 .hero-video-wrap{
   position:absolute;
   inset:0;
@@ -440,7 +440,7 @@ a:focus-visible, button:focus-visible{
   height:56.25vw;
   min-width:177.78vh;
   min-height:100vh;
-  border:0;
+  object-fit:cover;
   transform:translate(-50%, -50%) scale(1.18);
   pointer-events:none;
   filter:saturate(.8) brightness(.55) contrast(1.05);
