@@ -69,6 +69,15 @@
   fetchFiveMStatus();
   setInterval(fetchFiveMStatus, FIVEM_CONFIG.refreshInterval);
 
+  // --- Hero YouTube: skrýt flash play tlačítka při startu ---
+  const heroVideoWrap = document.querySelector('.hero-video-wrap');
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideoWrap && heroVideo) {
+    const revealHeroVideo = () => heroVideoWrap.classList.add('is-ready');
+    heroVideo.addEventListener('load', () => setTimeout(revealHeroVideo, 900));
+    setTimeout(revealHeroVideo, 3500);
+  }
+
   // --- Navigace: pozadí při scrollu ---
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
