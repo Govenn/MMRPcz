@@ -1,6 +1,13 @@
 (function(){
   "use strict";
 
+  // --- Čisté URL bez index.html a koncové lomítko u /tym ---
+  if (location.pathname.endsWith('/index.html')) {
+    history.replaceState(null, '', location.pathname.replace(/\/index\.html$/, '/') + location.search + location.hash);
+  } else if (location.pathname === '/tym/') {
+    history.replaceState(null, '', '/tym' + location.search + location.hash);
+  }
+
   // Aktuální rok v patičce
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -27,7 +34,8 @@
 
   const FIVEM_CONFIG = {
     cfxCode: "TVUJ_JOIN_KOD",  // <-- ZDE ZMEŇ na svůj join kód z cfx.re
-    maxPlayersFallback: 200,    // záložní maximum hráčů, pokud se live data nenačtou
+    maxPlayers: 48,               // zobrazené maximum hráčů (slots na serveru)
+    maxPlayersFallback: 48,       // záložní maximum hráčů, pokud se live data nenačtou
     refreshInterval: 60000      // jak často (ms) obnovovat data — 60000 = 1 minuta
   };
 
@@ -37,13 +45,13 @@
   };
 
   function animateCounter(el){
-    const target = parseFloat(el.dataset.target);
     const decimals = parseInt(el.dataset.decimals || '0', 10);
-    const suffix = el.dataset.suffix || '';
     const duration = 1700;
     const startTime = performance.now();
 
     function tick(now){
+      const target = parseFloat(el.dataset.target || '0', 10);
+      const suffix = el.dataset.suffix || '';
       const progress = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const value = target * eased;
@@ -57,17 +65,28 @@
     requestAnimationFrame(tick);
   }
 
-  function updatePlayerDisplays(online, max){
-    document.querySelectorAll('.js-player-count').forEach(el => {
-      el.textContent = `${online}/${max}`;
-    });
-
+  function updateStatsPlayerCounter(online, max){
     const playerCounter = document.getElementById('playerCounter');
     if (!playerCounter) return;
 
     playerCounter.dataset.target = online;
     playerCounter.dataset.suffix = `/${max}`;
-    if (playerCounter.dataset.counted === 'true') animateCounter(playerCounter);
+
+    if (playerCounter.dataset.counted === 'true') {
+      playerCounter.dataset.counted = 'false';
+      animateCounter(playerCounter);
+    }
+  }
+
+  function updateNavPlayerCount(online, max){
+    document.querySelectorAll('.js-player-count').forEach(el => {
+      el.textContent = `${online}/${max}`;
+    });
+  }
+
+  function updatePlayerDisplays(online, max){
+    updateNavPlayerCount(online, max);
+    updateStatsPlayerCounter(online, max);
   }
 
   async function fetchFiveMStatus(){
@@ -81,7 +100,7 @@
       const data = json.Data;
 
       const online = data.clients ?? 0;
-      const max = data.sv_maxclients || FIVEM_CONFIG.maxPlayersFallback;
+      const max = FIVEM_CONFIG.maxPlayers;
 
       updatePlayerDisplays(online, max);
 
@@ -91,7 +110,7 @@
     }catch(err){
       dots.forEach(d => d.classList.add('is-offline'));
       texts.forEach(t => t.textContent = 'Server offline');
-      updatePlayerDisplays(0, FIVEM_CONFIG.maxPlayersFallback);
+      updatePlayerDisplays(0, FIVEM_CONFIG.maxPlayers);
     }
   }
 
@@ -215,7 +234,7 @@
     const CATEGORY_LABELS = { management: 'Management', 'high-staff': 'High Staff', staff: 'Staff' };
     const CATEGORY_ORDER = ['management', 'high-staff', 'staff'];
 
-    fetch('team.json', { cache: 'no-store' })
+    fetch('/team.json', { cache: 'no-store' })
       .then((res) => {
         if (!res.ok) throw new Error('team.json nenalezen');
         return res.json();
