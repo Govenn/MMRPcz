@@ -546,7 +546,16 @@ a:focus-visible, button:focus-visible{
 /* STATISTIKY                      */
 /* ============================== */
 .stats-section{
-  padding:0 0 70px;
+  padding:50px 0 20px;
+}
+
+.stats-title{
+  text-align:center;
+  margin-bottom:36px;
+}
+
+.stats-section + #o-serveru{
+  padding-top:70px;
 }
 
 .stats-grid{
