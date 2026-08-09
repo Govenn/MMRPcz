@@ -3,21 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Náš A-Team | MMRP</title>
-<meta name="description" content="Poznej tým, který stojí za FiveM roleplay serverem MMRP.">
+<title>Pravidla serveru | MMRP</title>
+<meta name="description" content="Kompletní pravidla FiveM roleplay serveru MMRP — vyhledávání, kategorie a tagy.">
 
-<!-- Google Fonts: Montserrat (displej / nadpisy), Inter (běžný text), JetBrains Mono (čísla, statistiky, štítky) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Font Awesome ikony -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<!-- Favicon MMRP -->
 <link rel="icon" type="image/png" href="favicon.png">
-
-<!-- Sdílený styl pro celý web -->
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -43,7 +36,6 @@
       </span>
 
       <div class="nav-cta">
-        <!-- ZDE ZMEŇ IP adresu a port FiveM serveru -->
         <a href="fivem://connect/000.000.000.000:30120" class="btn btn--primary">
           <i class="fa-solid fa-right-to-bracket"></i> Hrát
         </a>
@@ -61,24 +53,29 @@
 <header class="page-hero">
   <div class="container">
     <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Zpět</a>
-    <h1 class="page-title">Náš A-Team</h1>
-    <p class="page-lead">Tým nadšenců, kteří stojí za vývojem, chodem a atmosférou celého serveru.</p>
+    <h1 class="page-title">Pravidla serveru</h1>
+    <p class="page-lead">Všechna pravidla MMRP na jednom místě. Vyhledej konkrétní pravidlo nebo filtruj podle kategorie.</p>
   </div>
 </header>
 
-<section class="section" style="padding-top:70px;">
+<section class="section rules-page">
   <div class="container">
-    <p class="team-status reveal" id="teamStatus">Načítám tým z Discordu…</p>
-    <div class="team-grid" id="teamGrid"></div>
-    <p class="team-updated" id="teamUpdated"></p>
+    <div class="rules-toolbar reveal">
+      <div class="rules-search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" class="rules-search" id="rulesSearch" placeholder="Hledat pravidlo…" autocomplete="off">
+      </div>
+      <p class="rules-count" id="rulesCount">Načítám pravidla…</p>
+    </div>
 
-    <div class="btn-row reveal" style="margin-top:60px;">
-      <a href="https://discord.gg/dqZ7HvwFc6" target="_blank" rel="noopener" class="btn btn--primary">
-        <i class="fa-brands fa-discord"></i> Napsat týmu na Discordu
-      </a>
+    <div class="rules-tags reveal" id="rulesTags"></div>
+
+    <div class="rules-results reveal" id="rulesResults">
+      <p class="rules-status" id="rulesStatus">Načítám pravidla…</p>
     </div>
   </div>
 </section>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
@@ -119,6 +116,5 @@
 </footer>
 
 <script src="script.js" defer></script>
-
 </body>
 </html>
