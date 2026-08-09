@@ -27,6 +27,7 @@
 
   const FIVEM_CONFIG = {
     cfxCode: "TVUJ_JOIN_KOD",  // <-- ZDE ZMEŇ na svůj join kód z cfx.re
+    maxPlayers: 48,               // zobrazené maximum hráčů (slots na serveru)
     maxPlayersFallback: 48,       // záložní maximum hráčů, pokud se live data nenačtou
     refreshInterval: 60000      // jak často (ms) obnovovat data — 60000 = 1 minuta
   };
@@ -92,7 +93,7 @@
       const data = json.Data;
 
       const online = data.clients ?? 0;
-      const max = data.sv_maxclients || FIVEM_CONFIG.maxPlayersFallback;
+      const max = FIVEM_CONFIG.maxPlayers;
 
       updatePlayerDisplays(online, max);
 
@@ -102,7 +103,7 @@
     }catch(err){
       dots.forEach(d => d.classList.add('is-offline'));
       texts.forEach(t => t.textContent = 'Server offline');
-      updatePlayerDisplays(0, FIVEM_CONFIG.maxPlayersFallback);
+      updatePlayerDisplays(0, FIVEM_CONFIG.maxPlayers);
     }
   }
 
