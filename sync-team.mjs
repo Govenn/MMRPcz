@@ -84,7 +84,7 @@ async function main() {
     const match = ROLE_PRIORITY.find((r) => member.roles.includes(r.id));
     if (!match) continue;
 
-    const name = member.nick || member.user.global_name || member.user.username;
+    const name = member.user.username;
 
     team.push({
       name,

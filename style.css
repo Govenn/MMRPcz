@@ -787,21 +787,6 @@ a:focus-visible, button:focus-visible{
   padding:32px 0 48px;
 }
 
-.team-updated{
-  text-align:center;
-  color:var(--gray-500);
-  font-family:var(--font-display);
-  font-size:11px;
-  letter-spacing:.04em;
-  margin-top:48px;
-}
-
-.team-cta{
-  display:flex;
-  justify-content:center;
-  margin-top:56px;
-}
-
 @media (max-width:640px){
   .team-board{ gap:56px; }
   .team-grid{
