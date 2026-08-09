@@ -27,7 +27,7 @@
 
   const FIVEM_CONFIG = {
     cfxCode: "TVUJ_JOIN_KOD",  // <-- ZDE ZMEŇ na svůj join kód z cfx.re
-    maxPlayersFallback: 200,    // záložní maximum hráčů, pokud se live data nenačtou
+    maxPlayersFallback: 48,       // záložní maximum hráčů, pokud se live data nenačtou
     refreshInterval: 60000      // jak často (ms) obnovovat data — 60000 = 1 minuta
   };
 
@@ -37,13 +37,13 @@
   };
 
   function animateCounter(el){
-    const target = parseFloat(el.dataset.target);
     const decimals = parseInt(el.dataset.decimals || '0', 10);
-    const suffix = el.dataset.suffix || '';
     const duration = 1700;
     const startTime = performance.now();
 
     function tick(now){
+      const target = parseFloat(el.dataset.target || '0', 10);
+      const suffix = el.dataset.suffix || '';
       const progress = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       const value = target * eased;
@@ -57,17 +57,28 @@
     requestAnimationFrame(tick);
   }
 
-  function updatePlayerDisplays(online, max){
-    document.querySelectorAll('.js-player-count').forEach(el => {
-      el.textContent = `${online}/${max}`;
-    });
-
+  function updateStatsPlayerCounter(online, max){
     const playerCounter = document.getElementById('playerCounter');
     if (!playerCounter) return;
 
     playerCounter.dataset.target = online;
     playerCounter.dataset.suffix = `/${max}`;
-    if (playerCounter.dataset.counted === 'true') animateCounter(playerCounter);
+
+    if (playerCounter.dataset.counted === 'true') {
+      playerCounter.dataset.counted = 'false';
+      animateCounter(playerCounter);
+    }
+  }
+
+  function updateNavPlayerCount(online, max){
+    document.querySelectorAll('.js-player-count').forEach(el => {
+      el.textContent = `${online}/${max}`;
+    });
+  }
+
+  function updatePlayerDisplays(online, max){
+    updateNavPlayerCount(online, max);
+    updateStatsPlayerCounter(online, max);
   }
 
   async function fetchFiveMStatus(){
