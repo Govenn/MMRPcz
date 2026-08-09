@@ -7,7 +7,7 @@ hostovaná na GitHub Pages, doména `mmrp.fun`.
 
 ```
 index.html      – hlavní stránka
-tym/index.html  – A-Team (URL: /tym, data z team.json)
+tym.html        – A-Team (data se načítají automaticky z team.json)
 style.css       – veškerý styl webu
 script.js       – veškerá interaktivita (menu, animace, statistiky, tým)
 logo.webp       – logo MMRP
