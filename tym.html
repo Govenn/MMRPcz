@@ -6,18 +6,11 @@
 <title>Náš A-Team | MMRP</title>
 <meta name="description" content="Poznej tým, který stojí za FiveM roleplay serverem MMRP.">
 
-<!-- Google Fonts: Montserrat (displej / nadpisy), Inter (běžný text), JetBrains Mono (čísla, statistiky, štítky) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Font Awesome ikony -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<!-- Favicon MMRP -->
 <link rel="icon" type="image/png" href="favicon.png">
-
-<!-- Sdílený styl pro celý web -->
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -50,27 +43,27 @@
   </div>
 </nav>
 
-<header class="page-hero">
+<section class="section team-page">
   <div class="container">
-    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Zpět</a>
-    <h1 class="page-title">Náš A-Team</h1>
-    <p class="page-lead">Tým nadšenců, kteří stojí za vývojem, chodem a atmosférou celého serveru.</p>
-  </div>
-</header>
+    <a href="index.html" class="back-link reveal"><i class="fa-solid fa-arrow-left"></i> Zpět</a>
 
-<section class="section" style="padding-top:70px;">
-  <div class="container">
+    <div class="section-head reveal">
+      <h1 class="section-title">Náš A-Team</h1>
+      <p class="section-desc">Lidé, kteří drží MMRP pohromadě — od vývoje až po každodenní chod serveru.</p>
+    </div>
+
     <p class="team-status reveal" id="teamStatus">Načítám tým z Discordu…</p>
-    <div class="team-grid" id="teamGrid"></div>
-    <p class="team-updated" id="teamUpdated"></p>
+    <div class="team-board" id="teamGrid"></div>
+    <p class="team-updated reveal" id="teamUpdated"></p>
 
-    <div class="btn-row reveal" style="margin-top:60px;">
-      <a href="https://discord.gg/dqZ7HvwFc6" target="_blank" rel="noopener" class="btn btn--primary">
+    <div class="team-cta reveal">
+      <a href="https://discord.gg/dqZ7HvwFc6" target="_blank" rel="noopener" class="btn btn--ghost">
         <i class="fa-brands fa-discord"></i> Napsat týmu na Discordu
       </a>
     </div>
   </div>
 </section>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-bar">
@@ -98,6 +91,5 @@
 </footer>
 
 <script src="script.js" defer></script>
-
 </body>
 </html>

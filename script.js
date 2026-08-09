@@ -242,7 +242,6 @@
         }
 
         teamStatus.remove();
-        teamGrid.classList.remove('team-grid'); // teď je to obal na skupiny, ne samotný grid
 
         const groups = { management: [], 'high-staff': [], staff: [] };
         data.members.forEach((m) => {
@@ -253,18 +252,24 @@
         teamGrid.innerHTML = CATEGORY_ORDER
           .filter((cat) => groups[cat].length > 0)
           .map((cat) => `
-            <div class="team-group" data-category="${cat}">
-              <h3 class="team-group-title">${CATEGORY_LABELS[cat]}</h3>
+            <section class="team-group" data-category="${cat}">
+              <div class="team-category-head">
+                <span class="team-category-line" aria-hidden="true"></span>
+                <h2 class="team-category-title">${CATEGORY_LABELS[cat]}</h2>
+                <span class="team-category-line" aria-hidden="true"></span>
+              </div>
               <div class="team-grid">
                 ${groups[cat].map((m) => `
-                  <div class="glass-card team-card reveal is-visible" data-category="${cat}">
-                    <div class="avatar"><img src="${escapeHtml(m.avatar)}" alt="${escapeHtml(m.name)}" loading="lazy"></div>
-                    <div class="team-name">${escapeHtml(m.name)}</div>
-                    <div class="team-role">${escapeHtml(m.role)}</div>
-                  </div>
+                  <article class="team-card reveal is-visible" data-category="${cat}">
+                    <div class="team-avatar">
+                      <img src="${escapeHtml(m.avatar)}" alt="" loading="lazy">
+                    </div>
+                    <h3 class="team-name">${escapeHtml(m.name)}</h3>
+                    <span class="team-role">${escapeHtml(m.role)}</span>
+                  </article>
                 `).join('')}
               </div>
-            </div>
+            </section>
           `).join('');
 
         if (data.updatedAt) {
