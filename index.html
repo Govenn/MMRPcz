@@ -6,18 +6,12 @@
 <title>MMRP | Český FiveM Roleplay Server</title>
 <meta name="description" content="MMRP — český FiveM roleplay server. Vlastní frakce, custom vozový park, živá ekonomika a aktivní A-Team. Vstup do temného srdce Los Santos.">
 
-<!-- Google Fonts: Montserrat (displej / nadpisy), Inter (běžný text), JetBrains Mono (čísla, statistiky, štítky) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Font Awesome ikony -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<!-- Favicon MMRP -->
 <link rel="icon" type="image/png" href="favicon.png">
-
-<!-- Sdílený styl pro celý web -->
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -42,13 +36,6 @@
         <span class="live-dot js-status-dot"></span><span class="js-player-count">0/48</span>
       </span>
 
-      <div class="nav-cta">
-        <!-- ZDE ZMEŇ IP adresu a port FiveM serveru -->
-        <a href="fivem://connect/000.000.000.000:30120" class="btn btn--primary">
-          <i class="fa-solid fa-right-to-bracket"></i> Hrát
-        </a>
-      </div>
-
       <button class="nav-toggle" id="navToggle" aria-label="Otevřít menu" aria-expanded="false">
         <span class="nav-toggle-bar"></span>
         <span class="nav-toggle-bar"></span>
@@ -58,9 +45,6 @@
   </div>
 </nav>
 
-<!-- ============================== -->
-<!-- HERO                            -->
-<!-- ============================== -->
 <header class="hero" id="home">
   <div class="hero-video-wrap" aria-hidden="true">
     <div class="hero-video-cover"></div>
@@ -81,7 +65,6 @@
     </p>
 
     <div class="btn-row">
-      <!-- ZDE ZMEŇ IP adresu a port FiveM serveru -->
       <a href="fivem://connect/000.000.000.000:30120" class="btn btn--primary">
         <i class="fa-solid fa-gamepad"></i> Hrát
       </a>
@@ -89,23 +72,15 @@
         <i class="fa-brands fa-discord"></i> Discord
       </a>
     </div>
-
-    <div class="scroll-cue">
-      <span>Scroluj</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
   </div>
 </header>
 
-
-
-<!-- ============================== -->
-<!-- O SERVERU / FEATURES            -->
-<!-- ============================== -->
-<section class="section" id="o-serveru">
+<section class="section section--features" id="o-serveru">
   <div class="container">
-    <h2 class="section-title reveal">V čem jsme jiní</h2>
-    <p class="section-desc reveal">Čtyři pilíře, na kterých stojí celý svět MMRP — od prvního nádechu ve městě až po poslední slovo příběhu.</p>
+    <div class="section-head section-head--left reveal">
+      <h2 class="section-title">V čem jsme jiní</h2>
+      <p class="section-desc">Čtyři pilíře, na kterých stojí celý svět MMRP — od prvního nádechu ve městě až po poslední slovo příběhu.</p>
+    </div>
 
     <div class="features-grid">
       <div class="glass-card feature-card reveal">
@@ -139,73 +114,71 @@
   </div>
 </section>
 
-<!-- ============================== -->
-<!-- STATISTIKY                      -->
-<!-- ============================== -->
-<section class="section stats-section" id="statistiky">
-  <div class="container">
-    <h2 class="section-title reveal">Statistiky</h2>
-    <p class="section-desc reveal">Aktuální počty hráčů ve hře a členů na našem Discordu.</p>
-
-    <div class="stats-grid reveal">
-      <div class="glass-card stat-card">
-        <p class="stat-label"><i class="fa-solid fa-gamepad"></i> Hráči online</p>
-        <p class="stat-value counter" id="playerCounter" data-target="0" data-suffix="/48">0/48</p>
-      </div>
-      <div class="glass-card stat-card">
-        <p class="stat-label"><i class="fa-brands fa-discord"></i> Členů na Discordu</p>
-        <p class="stat-value counter" id="discordCounter" data-target="0" data-suffix="">0</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================== -->
-<!-- ČASTÉ DOTAZY (FAQ)               -->
-<!-- ============================== -->
-<section class="section section--tight-top" id="faq">
+<section class="section section--faq" id="faq">
   <div class="container container--narrow">
-    <h2 class="section-title reveal">Časté dotazy</h2>
-    <p class="section-desc reveal">Odpovědi na otázky, které nás lidé ptají nejčastěji. Pokud tu svou nenajdeš, napiš nám na Discordu.</p>
+    <div class="section-head section-head--center reveal">
+      <h2 class="section-title">Časté dotazy</h2>
+      <p class="section-desc">Vše, co potřebuješ vědět před prvním vstupem do hry.</p>
+    </div>
 
     <div class="faq-list reveal">
       <div class="faq-item">
-        <button class="faq-question"><span>Je hraní na MMRP zpoplatněné?</span><i class="fa-solid fa-plus"></i></button>
+        <button class="faq-question" type="button">
+          <span class="faq-num">01</span>
+          <span class="faq-question-text">Je hraní na MMRP zpoplatněné?</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
         <div class="faq-answer"><div class="faq-answer-inner">Ne, hraní na MMRP je zcela zdarma. Server se financuje dobrovolnými příspěvky komunity, informace najdeš na Discordu.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question"><span>Musím mít mikrofon?</span><i class="fa-solid fa-plus"></i></button>
+        <button class="faq-question" type="button">
+          <span class="faq-num">02</span>
+          <span class="faq-question-text">Musím mít mikrofon?</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
         <div class="faq-answer"><div class="faq-answer-inner">Ano, funkční mikrofon je nutností. Roleplay stojí na hlasové komunikaci a bez ní se do děje nezapojíš naplno.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question"><span>Co se stane, když poruším pravidla?</span><i class="fa-solid fa-plus"></i></button>
-        <div class="faq-answer"><div class="faq-answer-inner">Podle závažnosti přestupku uděluje A-Team napomenutí, dočasný kick, timeout, nebo v krajních případech ban. Kompletní pravidla najdeš na našem Gitbooku.</div></div>
+        <button class="faq-question" type="button">
+          <span class="faq-num">03</span>
+          <span class="faq-question-text">Co se stane, když poruším pravidla?</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Podle závažnosti přestupku uděluje A-Team napomenutí, dočasný kick, timeout, nebo v krajních případech ban. Kompletní pravidla najdeš na stránce Pravidla.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question"><span>Mohu hrát více postav najednou?</span><i class="fa-solid fa-plus"></i></button>
+        <button class="faq-question" type="button">
+          <span class="faq-num">04</span>
+          <span class="faq-question-text">Mohu hrát více postav najednou?</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
         <div class="faq-answer"><div class="faq-answer-inner">Ne, jeden herní účet odpovídá jedné aktivní postavě. Výjimky řeší individuálně A-Team.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question"><span>Jak nahlásím chování jiného hráče?</span><i class="fa-solid fa-plus"></i></button>
+        <button class="faq-question" type="button">
+          <span class="faq-num">05</span>
+          <span class="faq-question-text">Jak nahlásím chování jiného hráče?</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
         <div class="faq-answer"><div class="faq-answer-inner">Přes tiketový systém na našem Discordu — popiš situaci, přilož důkazy a A-Team se ti ozve.</div></div>
       </div>
       <div class="faq-item">
-        <button class="faq-question"><span>Můžu si založit vlastní frakci nebo gang?</span><i class="fa-solid fa-plus"></i></button>
+        <button class="faq-question" type="button">
+          <span class="faq-num">06</span>
+          <span class="faq-question-text">Můžu si založit vlastní frakci nebo gang?</span>
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
         <div class="faq-answer"><div class="faq-answer-inner">Ano, po delší aktivní účasti na serveru a schválení A-Teamem je možné založit vlastní frakci. Podrobnosti se řeší individuálně na Discordu.</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================== -->
-<!-- FINÁLNÍ CTA                     -->
-<!-- ============================== -->
 <section class="cta-band">
   <div class="container">
     <h2 class="cta-title reveal">Připraven vstoupit do MMRP?</h2>
     <p class="cta-desc reveal">Vytvoř si postavu, najdi svou frakci a napiš vlastní kapitolu příběhu Los Santos.</p>
     <div class="btn-row">
-      <!-- ZDE ZMEŇ IP adresu a port FiveM serveru -->
       <a href="fivem://connect/000.000.000.000:30120" class="btn btn--primary">
         <i class="fa-solid fa-gamepad"></i> Hrát
       </a>
@@ -215,46 +188,27 @@
     </div>
   </div>
 </section>
+
 <footer class="footer">
   <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#home" class="logo"><img src="logo.webp" alt="" class="logo-icon">MMRP</a>
-        <p class="footer-tagline">Český FiveM roleplay server. Místo, kde se píšou skutečné příběhy.</p>
-        <div class="footer-socials">
-          <a href="https://discord.gg/dqZ7HvwFc6" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        </div>
+    <div class="footer-bar">
+      <div class="footer-bar-left">
+        <a href="#home" class="footer-logo">
+          <img src="logo.webp" alt="" class="logo-icon">
+          <span>MMRP</span>
+        </a>
+        <span class="footer-copy">&copy; <span id="year"></span> MMRP. Všechna práva vyhrazena.</span>
       </div>
-
-      <div class="footer-col">
-        <p class="footer-col-title">Server</p>
-        <a href="#o-serveru">O serveru</a>
+      <nav class="footer-bar-links" aria-label="Patička">
+        <a href="#home">Domů</a>
+        <a href="pravidla.html">Pravidla</a>
         <a href="tym.html">A-Team</a>
-      </div>
-
-      <div class="footer-col">
-        <p class="footer-col-title">Komunita</p>
-        <a href="https://discord.gg/dqZ7HvwFc6" target="_blank" rel="noopener">Discord server</a>
-        <a href="pravidla.html">Pravidla serveru</a>
-      </div>
-
-      <div class="footer-col">
-        <p class="footer-col-title">Podpora</p>
         <a href="#faq">Časté dotazy</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span>&copy; <span id="year"></span> MMRP. Všechna práva vyhrazena.</span>
-      <span class="footer-status"><span class="live-dot js-status-dot"></span><span class="js-status-text">Načítám stav serveru…</span></span>
+      </nav>
     </div>
   </div>
 </footer>
 
 <script src="script.js" defer></script>
-
 </body>
 </html>
