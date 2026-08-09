@@ -1282,11 +1282,26 @@ a:focus-visible, button:focus-visible{
 
 .rule-card{
   overflow:hidden;
-  transition:border-color .3s ease;
+  transition:border-color .3s ease, outline-color .3s ease;
+}
+
+.rule-card:hover,
+.rule-card.is-open{
+  transform:translateZ(0);
+  border-color:var(--border-strong);
+  outline-color:rgba(255,255,255,.22);
+  box-shadow:none;
+}
+
+.rule-card:hover::before,
+.rule-card.is-open::before{
+  opacity:0;
+  transform:translate(-18%, -18%) scale(.3);
 }
 
 .rule-card.is-open{
   border-color:var(--border-strong);
+  outline-color:rgba(255,255,255,.28);
 }
 
 .rule-card.is-hidden{
