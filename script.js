@@ -1,6 +1,13 @@
 (function(){
   "use strict";
 
+  // --- Čisté URL bez index.html a koncové lomítko u /tym ---
+  if (location.pathname.endsWith('/index.html')) {
+    history.replaceState(null, '', location.pathname.replace(/\/index\.html$/, '/') + location.search + location.hash);
+  } else if (location.pathname === '/tym/') {
+    history.replaceState(null, '', '/tym' + location.search + location.hash);
+  }
+
   // Aktuální rok v patičce
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -227,7 +234,7 @@
     const CATEGORY_LABELS = { management: 'Management', 'high-staff': 'High Staff', staff: 'Staff' };
     const CATEGORY_ORDER = ['management', 'high-staff', 'staff'];
 
-    fetch('team.json', { cache: 'no-store' })
+    fetch('/team.json', { cache: 'no-store' })
       .then((res) => {
         if (!res.ok) throw new Error('team.json nenalezen');
         return res.json();
