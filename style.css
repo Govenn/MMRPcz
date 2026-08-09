@@ -385,6 +385,16 @@ a:focus-visible, button:focus-visible{
   overflow:hidden;
   pointer-events:none;
 }
+.hero-video-cover{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:var(--bg);
+  transition:opacity 1.2s var(--ease);
+}
+.hero-video-wrap.is-ready .hero-video-cover{
+  opacity:0;
+}
 .hero-video{
   position:absolute;
   top:50%;
@@ -394,7 +404,7 @@ a:focus-visible, button:focus-visible{
   min-width:177.78vh;
   min-height:100vh;
   border:0;
-  transform:translate(-50%, -50%);
+  transform:translate(-50%, -50%) scale(1.18);
   pointer-events:none;
   filter:saturate(.8) brightness(.55) contrast(1.05);
 }
@@ -402,6 +412,7 @@ a:focus-visible, button:focus-visible{
   content:'';
   position:absolute;
   inset:0;
+  z-index:2;
   background:
     radial-gradient(ellipse 90% 70% at 50% 40%, transparent 30%, rgba(8,8,10,.55) 100%),
     linear-gradient(180deg, rgba(8,8,10,.72) 0%, rgba(8,8,10,.35) 40%, rgba(8,8,10,.55) 75%, var(--bg) 100%);
@@ -1026,17 +1037,32 @@ a:focus-visible, button:focus-visible{
 }
 .faq-item.open .faq-question i{ transform:rotate(180deg); }
 .faq-answer{
-  max-height:0;
-  overflow:hidden;
-  transition:max-height .4s var(--ease);
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .55s cubic-bezier(.4,0,.2,1);
 }
-.faq-item.open .faq-answer{ max-height:420px; }
+.faq-item.open .faq-answer{ grid-template-rows:1fr; }
 .faq-answer-inner{
-  padding:18px 24px 22px;
-  border-top:1px solid var(--border);
+  min-height:0;
+  overflow:hidden;
+  padding:0 24px;
+  border-top:1px solid transparent;
   color:var(--gray-500);
   font-size:14.5px;
   line-height:1.75;
+  opacity:0;
+  transform:translateY(-6px);
+  transition:
+    opacity .45s cubic-bezier(.4,0,.2,1),
+    transform .45s cubic-bezier(.4,0,.2,1),
+    padding .55s cubic-bezier(.4,0,.2,1),
+    border-color .35s ease;
+}
+.faq-item.open .faq-answer-inner{
+  padding:18px 24px 22px;
+  border-top-color:var(--border);
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* --- Nahlásit chybu / Podat stížnost --- */
