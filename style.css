@@ -124,6 +124,7 @@ a:focus-visible, button:focus-visible{
 }
 
 .section-head{
+  text-align:center;
   margin-bottom:48px;
 }
 
@@ -131,8 +132,9 @@ a:focus-visible, button:focus-visible{
   text-align:left;
 }
 
-.section-head--center{
-  text-align:center;
+.section-head--left .section-desc{
+  margin-left:0;
+  margin-right:0;
 }
 
 .section-head--center .section-desc{
@@ -159,21 +161,23 @@ a:focus-visible, button:focus-visible{
 
 .section-title{
   font-family:var(--font-display);
-  font-weight:800;
-  font-size:clamp(30px, 4.5vw, 48px);
-  letter-spacing:-.01em;
-  line-height:1.08;
+  font-weight:900;
+  font-size:clamp(24px, 4vw, 36px);
+  letter-spacing:.05em;
+  line-height:1.2;
   text-transform:uppercase;
-  margin-bottom:16px;
+  color:var(--white);
+  margin-bottom:12px;
 }
 
 .section-desc{
-  color:var(--gray-300);
+  font-family:var(--font-display);
+  color:#a1a1aa;
   font-weight:400;
-  font-size:15px;
-  max-width:520px;
-  margin-bottom:0;
-  line-height:1.75;
+  font-size:clamp(12px, 1.4vw, 14px);
+  max-width:560px;
+  margin:0 auto;
+  line-height:1.5;
 }
 
 /* --- Scroll reveal --- */
@@ -816,23 +820,6 @@ a:focus-visible, button:focus-visible{
   border-bottom:1px solid var(--border);
 }
 
-.cta-title{
-  font-family:var(--font-display);
-  font-weight:800;
-  font-size:clamp(28px, 4.5vw, 46px);
-  letter-spacing:-.01em;
-  text-transform:uppercase;
-  margin-bottom:20px;
-}
-
-.cta-desc{
-  color:var(--gray-300);
-  font-weight:400;
-  font-size:15px;
-  max-width:480px;
-  margin:0 auto 40px;
-  line-height:1.75;
-}
 .cta-band .btn-row{ justify-content:center; }
 
 /* ============================== */
