@@ -1000,10 +1000,6 @@ a:focus-visible, button:focus-visible{
   .container{ padding:0 22px; }
   :root{ --content-pad:22px; }
   .features-grid{ grid-template-columns:1fr; }
-  .faq-answer-inner,
-  .faq-item.open .faq-answer-inner{
-    padding-left:16px;
-  }
   .btn-row{ flex-direction:column; width:100%; }
   .btn{ width:100%; }
   .hero-title{ font-size:clamp(64px, 22vw, 110px); }
@@ -1152,6 +1148,12 @@ a:focus-visible, button:focus-visible{
 }
 
 .faq-item{
+  display:grid;
+  grid-template-columns:34px 1fr auto;
+  column-gap:14px;
+  row-gap:0;
+  padding:14px 16px;
+  align-items:start;
   border:1px solid rgba(255,255,255,.08);
   border-radius:var(--radius-sm);
   overflow:hidden;
@@ -1172,11 +1174,12 @@ a:focus-visible, button:focus-visible{
 }
 
 .faq-question{
-  width:100%;
-  display:flex;
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:subgrid;
   align-items:center;
-  gap:14px;
-  padding:14px 16px;
+  width:100%;
+  padding:0;
   text-align:left;
 }
 
@@ -1221,6 +1224,7 @@ a:focus-visible, button:focus-visible{
 }
 
 .faq-answer{
+  grid-column:2;
   display:grid;
   grid-template-rows:0fr;
   transition:grid-template-rows .25s cubic-bezier(.4,0,.2,1);
@@ -1233,7 +1237,7 @@ a:focus-visible, button:focus-visible{
 .faq-answer-inner{
   min-height:0;
   overflow:hidden;
-  padding:0 16px 0 62px;
+  padding:0;
   border-top:1px solid transparent;
   color:var(--gray-100);
   font-size:14px;
@@ -1247,7 +1251,7 @@ a:focus-visible, button:focus-visible{
 }
 
 .faq-item.open .faq-answer-inner{
-  padding:12px 16px 16px 62px;
+  padding:10px 0 2px;
   border-top-color:rgba(255,255,255,.06);
   opacity:1;
 }
